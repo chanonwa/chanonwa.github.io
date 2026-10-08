@@ -85,7 +85,7 @@ export const experience: Job[] = [
   },
 ];
 
-// Selected work is drawn from the experience above. Add an `image` (in public/projects/) to any card to show a photo instead of the big number.
+// The Projects cards are drawn from the experience above. Add an `image` (in public/projects/) to any card to show a photo instead of the big number.
 export const projects: Project[] = [
   {
     name: 'Messaging pricing model',

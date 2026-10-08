@@ -9,8 +9,8 @@ export default function Home() {
         <div className="in">
           <a className="logo" href="#top">{profile.handle}</a>
           <ul>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
-            <li><a href="#work">Work</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -26,10 +26,15 @@ export default function Home() {
           <h1>{profile.name}.<br /><span>{profile.headline}</span></h1>
           <p className="lede">{profile.intro}</p>
           <div className="cta">
-            <a className="btn pri" href="#work">See selected work</a>
+            <a className="btn pri" href="#projects">See projects</a>
             <a className="btn" href="#contact">Get in touch</a>
           </div>
         </header>
+
+        <section id="projects">
+          <h2>Projects</h2>
+          <Projects projects={projects} />
+        </section>
 
         <section id="experience">
           <h2>Experience</h2>
@@ -43,11 +48,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </section>
-
-        <section id="work">
-          <h2>Selected work</h2>
-          <Projects projects={projects} />
         </section>
 
         <section id="skills">
