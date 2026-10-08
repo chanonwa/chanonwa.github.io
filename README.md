@@ -4,10 +4,9 @@ A static resume and portfolio built with Next.js and TypeScript, hosted on GitHu
 
 ## Edit your content
 
-Everything on the page comes from [data/resume.ts](data/resume.ts): profile, experience, projects, skills and education.
+Everything on the page comes from [data/resume.ts](data/resume.ts): profile, experience, selected work, skills, education and volunteering.
 
-- Project photos: put images in `public/projects/` and set `image: '/projects/name.png'` on the project.
-- Resume PDF: save it as `public/resume.pdf`.
+- Project photos: put images in `public/projects/` and set `image: '/projects/name.png'` on the project. A photo replaces the big number on that card.
 
 ## Run locally
 

@@ -70,7 +70,7 @@ h1 span { background: linear-gradient(90deg, var(--fg), var(--mut)); -webkit-bac
 .lede { color: var(--mut); font-size: 18px; max-width: 560px; margin: 0 0 28px; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; }
 
-section { padding-block: 48px; border-top: 1px solid var(--line); }
+section { padding-block: 48px; border-top: 1px solid var(--line); scroll-margin-top: 56px; }
 h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); margin: 0 0 28px; }
 
 /* Experience */
@@ -110,6 +110,10 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
   radial-gradient(circle at 80% 85%, color-mix(in srgb, var(--ok) 30%, transparent), transparent 50%), var(--bg2);
   display: grid; place-items: center; font: 400 12px var(--mono); color: var(--dim); }
 .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shot.stat { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 16px; text-align: center; }
+.shot.stat strong { font-size: clamp(32px, 6vw, 48px); line-height: 1; letter-spacing: -0.04em; font-weight: 700; color: var(--fg); }
+.shot.stat span { font: 400 12px var(--mono); color: var(--mut); max-width: 28ch; text-wrap: balance; }
+.detail.solo { grid-template-columns: 1fr; }
 .meta { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 400 12px var(--mono); color: var(--dim); margin-bottom: 10px; }
 .detail p { margin: 0 0 12px; }
 .detail ul { margin: 0 0 16px; padding-left: 18px; color: var(--mut); font-size: 14px; }
@@ -121,7 +125,11 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .skills dt { font: 400 13px var(--mono); color: var(--dim); padding-top: 3px; }
 .skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { border: 1px solid var(--line2); border-radius: 999px; padding: 3px 12px; font-size: 13.5px; }
+.edu-list { display: grid; gap: 18px; }
 .edu { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
+.edu .co { color: var(--mut); font-size: 14px; }
+.vol { margin: 0; padding-left: 18px; color: var(--mut); font-size: 14.5px; max-width: 70ch; }
+.vol li { margin-bottom: 8px; }
 footer { border-top: 1px solid var(--line); padding-block: 32px 48px; display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: space-between; color: var(--dim); font: 400 13px var(--mono); }
 footer .links { display: flex; gap: 20px; }
 footer a:hover { color: var(--fg); }

@@ -10,6 +10,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
     <div className="grid">
       {projects.map((p, i) => {
         const isOpen = open === i;
+        const hasVisual = Boolean(p.image || p.stat);
         return (
           <article key={p.name} className={`proj${isOpen ? ' open' : ''}`}>
             <button
@@ -36,10 +37,19 @@ export default function Projects({ projects }: { projects: Project[] }) {
             </button>
             <div className="more" id={`project-${i}`}>
               <div>
-                <div className="detail">
-                  <div className="shot" role="img" aria-label={`${p.name} screenshot`}>
-                    {p.image ? <img src={p.image} alt="" /> : 'screenshot placeholder'}
-                  </div>
+                <div className={`detail${hasVisual ? '' : ' solo'}`}>
+                  {p.image ? (
+                    <div className="shot">
+                      <img src={p.image} alt={`${p.name} screenshot`} />
+                    </div>
+                  ) : (
+                    p.stat && (
+                      <div className="shot stat">
+                        <strong>{p.stat.value}</strong>
+                        <span>{p.stat.label}</span>
+                      </div>
+                    )
+                  )}
                   <div>
                     <div className="meta"><span>{p.role}</span><span>{p.year}</span></div>
                     <p>{p.description}</p>
@@ -48,10 +58,12 @@ export default function Projects({ projects }: { projects: Project[] }) {
                         <li key={h}>{h}</li>
                       ))}
                     </ul>
-                    <div className="links">
-                      {p.liveUrl && <a className="btn pri" href={p.liveUrl}>Live site</a>}
-                      {p.sourceUrl && <a className="btn" href={p.sourceUrl}>Source</a>}
-                    </div>
+                    {(p.liveUrl || p.sourceUrl) && (
+                      <div className="links">
+                        {p.liveUrl && <a className="btn pri" href={p.liveUrl}>Live site</a>}
+                        {p.sourceUrl && <a className="btn" href={p.sourceUrl}>Source</a>}
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
