@@ -1,10 +1,25 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import type { Project } from '@/data/resume';
 
 export default function Projects({ projects }: { projects: Project[] }) {
   const [open, setOpen] = useState<number | null>(null);
+  const cards = useRef<(HTMLElement | null)[]>([]);
+
+  // Once a card has finished expanding, scroll just enough to bring all of it into view.
+  // Waiting for the 0.3s expand transition means the card has its final height by then.
+  useEffect(() => {
+    if (open === null) return;
+    const card = cards.current[open];
+    if (!card) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timer = window.setTimeout(
+      () => card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }),
+      reduce ? 0 : 320,
+    );
+    return () => window.clearTimeout(timer);
+  }, [open]);
 
   return (
     <div className="grid">
@@ -12,7 +27,13 @@ export default function Projects({ projects }: { projects: Project[] }) {
         const isOpen = open === i;
         const hasVisual = Boolean(p.image || p.stat);
         return (
-          <article key={p.name} className={`proj${isOpen ? ' open' : ''}`}>
+          <article
+            key={p.name}
+            ref={(el) => {
+              cards.current[i] = el;
+            }}
+            className={`proj${isOpen ? ' open' : ''}`}
+          >
             <button
               className="proj-head"
               type="button"
