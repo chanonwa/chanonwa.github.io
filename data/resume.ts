@@ -31,7 +31,7 @@ export const profile = {
     'I build fast, accessible web apps with Node.js and TypeScript. Placeholder: replace this with a two-sentence introduction.',
   status: 'Open to new roles',
   email: 'cwasusopon@gmail.com',
-  github: 'https://github.com/chipwa',
+  github: 'https://github.com/chanonwa',
   linkedin: 'https://www.linkedin.com/in/chanon-wasusopon/',
   resumePdf: '/resume.pdf', // Put your PDF at public/resume.pdf
 };

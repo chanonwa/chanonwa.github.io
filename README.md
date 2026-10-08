@@ -1,6 +1,6 @@
 # Chanon Wasusopon — Resume site
 
-A static resume and portfolio built with Next.js and TypeScript, hosted on GitHub Pages at https://chipwa.github.io.
+A static resume and portfolio built with Next.js and TypeScript, hosted on GitHub Pages at https://chanonwa.github.io.
 
 ## Edit your content
 
