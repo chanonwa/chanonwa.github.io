@@ -1,4 +1,4 @@
-import { education, experience, profile, projects, skills, volunteering } from '@/data/resume';
+import { education, experience, profile, projects, skills } from '@/data/resume';
 import Projects from '@/components/Projects';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -50,18 +50,6 @@ export default function Home() {
           ))}
         </section>
 
-        <section id="skills">
-          <h2>Skills</h2>
-          <dl className="skills">
-            {skills.map((s) => (
-              <div key={s.group} style={{ display: 'contents' }}>
-                <dt>{s.group}</dt>
-                <dd>{s.items.map((i) => <span className="chip" key={i}>{i}</span>)}</dd>
-              </div>
-            ))}
-          </dl>
-        </section>
-
         <section id="education">
           <h2>Education</h2>
           <div className="edu-list">
@@ -77,11 +65,16 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="volunteering">
-          <h2>Volunteering</h2>
-          <ul className="vol">
-            {volunteering.map((v) => <li key={v}>{v}</li>)}
-          </ul>
+        <section id="skills">
+          <h2>Skills</h2>
+          <dl className="skills">
+            {skills.map((s) => (
+              <div key={s.group} style={{ display: 'contents' }}>
+                <dt>{s.group}</dt>
+                <dd>{s.items.map((i) => <span className="chip" key={i}>{i}</span>)}</dd>
+              </div>
+            ))}
+          </dl>
         </section>
 
         <footer id="contact">

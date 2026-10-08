@@ -206,11 +206,3 @@ export const education = [
     period: '2008 – 2013',
   },
 ];
-
-export const volunteering = [
-  'Volunteered at the Sea Turtle Conservation Center of the Royal Thai Navy in July 2022, assisting with cleaning turtle habitats, nursing baby turtles, and providing general care for the turtles.',
-  'Quarterly blood donation since 2017.',
-  'Founder & Former President of Thai Society at the University of Essex.',
-  'Volunteered in an international coastal clean-up event with the Industrial Estate Authority of Thailand and manufacturers at Rayong in September 2017, which removed over 6,500 kg of trash in total.',
-  'Volunteered as a business partner for the Empower ASEAN social group and organized the biggest education conference hosted by university students in 2016, titled “The EMPOWER ASEAN 2016 in Cooperation with Chang beer”.',
-];

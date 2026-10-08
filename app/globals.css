@@ -128,8 +128,6 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .edu-list { display: grid; gap: 18px; }
 .edu { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
 .edu .co { color: var(--mut); font-size: 14px; }
-.vol { margin: 0; padding-left: 18px; color: var(--mut); font-size: 14.5px; max-width: 70ch; }
-.vol li { margin-bottom: 8px; }
 footer { border-top: 1px solid var(--line); padding-block: 32px 48px; display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: space-between; color: var(--dim); font: 400 13px var(--mono); }
 footer .links { display: flex; gap: 20px; }
 footer a:hover { color: var(--fg); }
