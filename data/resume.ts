@@ -45,13 +45,11 @@ export const experience: Job[] = [
     company: 'LINE Company (Thailand) Co., Ltd.',
     location: 'Bangkok, Thailand',
     points: [
-      'Conducted complex analysis and provided key insights to senior executives, aiding major business decisions. Analyzed conversion rate, churn patterns, marketing campaign impact, internal service cannibalization, purchase behavior and quarterly revenue forecast for strategic optimization.',
-      'Led collaboration with the strategy team to develop an optimized pricing model for the application messaging scheme, leveraging historical data to drive a 20% year-over-year revenue increase while maintaining high client retention.',
-      'Developed 100+ user segments from multiple data sources and services using SQL to capture end-user behavior patterns from user logs, billing transactions and demographic data. Achieved a 70% adoption rate within the first two months, driving a 15% uplift in annual revenue.',
-      'Utilized SQL, Python, and BI tools (Confluence, Datalore, Redash, Tableau) to support workflow optimization and streamline analytics operations for business units by developing automated reports that align with business goals.',
-      'Collaborated with cross-functional teams (PMO, Sales, Marketing, and Engineering) across global networks to gather business requirements and define KPIs for new and existing services on the B2C and B2B sides.',
-      'Created queries to detect user accounts breaching Terms of Service, identifying illegal or suspicious accounts using messaging patterns, account age, and naming conventions as key indicators.',
-      'Led interactive workshops and coached junior analysts on visualization techniques and data interpretation.',
+      'Analyzed conversion, churn, campaign impact, purchase behavior and quarterly revenue forecasts for senior executives, supporting major business decisions.',
+      'Led work with the strategy team on an optimized messaging pricing model: 20% year-over-year revenue increase with high client retention.',
+      'Built 100+ SQL user segments from user logs, billing and demographic data: 70% adoption in two months, 15% uplift in annual revenue.',
+      'Defined KPIs for B2C and B2B services with global PMO, Sales, Marketing and Engineering teams, and built automated reports for business units.',
+      'Led workshops and coached junior analysts on data visualization and interpretation.',
     ],
   },
   {
@@ -60,8 +58,8 @@ export const experience: Job[] = [
     company: 'Detecon Asia-Pacific Ltd.',
     location: 'Bangkok, Thailand',
     points: [
-      "Provided solutions to projects valued over THB 100 million (equivalent to GBP 2.3 million) for Thailand's largest communication service provider. Modeled and optimized the acceptance process operations on all network equipment to improve efficiency and quality by considering international and local industry practices.",
-      "Developed an IT solution to monitor and benchmark the quality of service for Thailand's telecommunication regulator. Designed a new system architecture to survey signal quality across the country for all service providers while conducting data visualization and analysis. Performed system maintenance and provided daily customer support.",
+      "Optimized network equipment acceptance for Thailand's largest communication service provider, on projects valued over THB 100 million (about GBP 2.3 million).",
+      "Built and maintained a system to monitor and benchmark service quality for Thailand's telecom regulator, surveying signal quality nationwide for all providers.",
     ],
   },
   {
@@ -80,7 +78,7 @@ export const experience: Job[] = [
     company: 'WorkVenture Technologies Co., Ltd.',
     location: 'Bangkok, Thailand',
     points: [
-      'Researched and benchmarked advertising products across traditional and digital markets to optimize marketing spend and maximize ROI.',
+      'Benchmarked advertising products across traditional and digital markets to optimize marketing spend and maximize ROI.',
     ],
   },
 ];
