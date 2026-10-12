@@ -88,7 +88,10 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .rail-btns { display: flex; gap: 8px; }
 .rail-btn { width: 36px; height: 32px; border-radius: 8px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font: 500 15px var(--mono); line-height: 1; cursor: pointer; }
 .rail-btn:hover { border-color: var(--fg); }
-.rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; scrollbar-width: thin; scrollbar-color: var(--line2) transparent; }
+.rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; scrollbar-width: thin; scrollbar-color: var(--line2) transparent; cursor: grab; user-select: none; }
+/* While dragging, turn snapping off so it does not fight the mouse. */
+.rail.dragging { cursor: grabbing; scroll-snap-type: none; }
+.rail.dragging .proj-head { cursor: grabbing; }
 .proj { flex: 0 0 260px; scroll-snap-align: start; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; transition: border-color 0.15s; display: flex; flex-direction: column; position: relative; }
 .proj:hover { border-color: var(--line2); }
 .proj.open { border-color: var(--fg); }

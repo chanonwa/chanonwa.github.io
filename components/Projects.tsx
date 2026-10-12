@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import type { MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from 'react';
 import type { Project } from '@/data/resume';
 
 const scrollBehavior = (): ScrollBehavior =>
@@ -13,6 +14,48 @@ export default function Projects({ projects }: { projects: Project[] }) {
   const rail = useRef<HTMLDivElement>(null);
   const panel = useRef<HTMLDivElement>(null);
   const cards = useRef<(HTMLElement | null)[]>([]);
+
+  // Drag the row sideways with a mouse. Touch screens already scroll it natively.
+  const [dragging, setDragging] = useState(false);
+  const drag = useRef({ active: false, moved: false, startX: 0, startScroll: 0, id: -1 });
+
+  function onPointerDown(e: ReactPointerEvent<HTMLDivElement>) {
+    const row = rail.current;
+    if (!row || e.pointerType !== 'mouse' || e.button !== 0) return;
+    drag.current = { active: true, moved: false, startX: e.clientX, startScroll: row.scrollLeft, id: e.pointerId };
+  }
+
+  function onPointerMove(e: ReactPointerEvent<HTMLDivElement>) {
+    const d = drag.current;
+    const row = rail.current;
+    if (!row || !d.active || e.pointerId !== d.id) return;
+    const dx = e.clientX - d.startX;
+    if (!d.moved) {
+      if (Math.abs(dx) < 5) return; // a small wobble is still a click
+      d.moved = true;
+      setDragging(true);
+      try {
+        row.setPointerCapture(e.pointerId); // keep following the mouse outside the row
+      } catch {}
+    }
+    row.scrollLeft = d.startScroll - dx;
+  }
+
+  function endDrag(e: ReactPointerEvent<HTMLDivElement>) {
+    const d = drag.current;
+    if (!d.active || e.pointerId !== d.id) return;
+    d.active = false;
+    if (d.moved) setDragging(false);
+  }
+
+  // A drag that ends over a card must not also open it.
+  function onClickCapture(e: ReactMouseEvent<HTMLDivElement>) {
+    if (drag.current.moved) {
+      e.preventDefault();
+      e.stopPropagation();
+      drag.current.moved = false;
+    }
+  }
 
   function nudge(dir: 1 | -1) {
     // One card (260px) plus the 16px gap.
@@ -37,30 +80,26 @@ export default function Projects({ projects }: { projects: Project[] }) {
     if (dx !== 0) row.scrollBy({ left: dx, behavior: scrollBehavior() });
   }
 
-  // After the panel has opened, scroll the page so the row and panel sit in the middle of the window.
+  // After the panel has opened, move the page only as far as needed to show all of it.
+  // The clicked card stays where it is unless the panel would otherwise run off the bottom,
+  // and the page never moves far enough to push that card up under the nav.
   // Waiting 0.3s for the open transition means the panel has its final height by then.
   useEffect(() => {
     if (open === null) return;
     const timer = window.setTimeout(
       () => {
-        const row = rail.current;
+        const card = cards.current[open];
         const box = panel.current;
-        if (!row || !box) return;
+        if (!card || !box) return;
         const nav = document.querySelector('nav');
         const navH = nav ? nav.getBoundingClientRect().height : 69;
-        const visible = window.innerHeight - navH;
-        const middle = (navH + window.innerHeight) / 2; // centre of the area below the nav
-        const rowTop = row.getBoundingClientRect().top;
-        const b = box.getBoundingClientRect();
-        let delta: number;
-        if (b.bottom - rowTop <= visible - 32) {
-          delta = (rowTop + b.bottom) / 2 - middle; // row and panel both fit: centre them together
-        } else if (b.height <= visible - 32) {
-          delta = (b.top + b.bottom) / 2 - middle; // only the panel fits: centre the panel
-        } else {
-          delta = b.top - navH - 16; // taller than the window: put its top just under the nav
-        }
-        window.scrollBy({ top: delta, behavior: scrollBehavior() });
+        const topLimit = navH + 12;
+        const bottomLimit = window.innerHeight - 12;
+        const needDown = box.getBoundingClientRect().bottom - bottomLimit;
+        if (needDown <= 0) return; // the whole panel is already in view
+        const room = card.getBoundingClientRect().top - topLimit; // how far the card can rise
+        const delta = Math.min(needDown, Math.max(room, 0));
+        if (delta > 0) window.scrollBy({ top: delta, behavior: scrollBehavior() });
       },
       scrollBehavior() === 'auto' ? 0 : 320,
     );
@@ -84,7 +123,16 @@ export default function Projects({ projects }: { projects: Project[] }) {
         </div>
       </div>
 
-      <div className="rail" ref={rail}>
+      <div
+        className={`rail${dragging ? ' dragging' : ''}`}
+        ref={rail}
+        onPointerDown={onPointerDown}
+        onPointerMove={onPointerMove}
+        onPointerUp={endDrag}
+        onPointerCancel={endDrag}
+        onLostPointerCapture={endDrag}
+        onClickCapture={onClickCapture}
+      >
         {projects.map((p, i) => {
           const isOpen = open === i;
           return (
