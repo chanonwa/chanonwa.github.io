@@ -78,7 +78,6 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .vtl { list-style: none; margin: 4px 0 0; padding: 0; }
 .vrole { display: grid; grid-template-columns: 130px 14px minmax(0, 1fr); gap: 0 20px; }
 .vwhen { padding-top: 1px; text-align: right; font: 400 13px var(--mono); color: var(--dim); }
-.vdur { display: block; margin-top: 6px; font-size: 11px; color: var(--accent); }
 .vline { position: relative; }
 .vline::before { content: ''; position: absolute; left: 6px; top: 16px; bottom: -4px; width: 2px; background: var(--line2); }
 .vline::after { content: ''; position: absolute; left: 1px; top: 4px; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
