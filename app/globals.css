@@ -74,27 +74,27 @@ section { padding-block: 48px; border-top: 1px solid var(--line); scroll-margin-
 h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); margin: 0 0 28px; }
 
 /* Experience */
-/* Career path: the roles as a rising staircase, oldest on the left. Select a step for its details. */
-.steps { display: grid; grid-auto-flow: column; grid-auto-columns: minmax(0, 1fr); gap: 12px; align-items: end; margin-top: 4px; }
-.step { all: unset; box-sizing: border-box; display: flex; flex-direction: column; gap: 8px; min-width: 0; min-height: calc(190px + var(--i, 0) * 36px); padding: 16px; border: 1px solid var(--line); border-top: 3px solid var(--line2); border-radius: 12px; background: var(--card); cursor: pointer; transition: border-color 0.15s; }
-.step:hover { border-color: var(--line2); }
-.step.on { border-color: var(--fg); border-top-color: var(--accent); }
-.step:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-.step-period { font: 400 12px var(--mono); color: var(--accent); }
-.step-title { font-size: 15px; font-weight: 600; line-height: 1.3; letter-spacing: -0.01em; overflow-wrap: anywhere; }
-.step-co { margin-top: auto; font-size: 13px; color: var(--mut); }
-.rpanels { display: grid; margin-top: 16px; }
-.rdetail { grid-area: 1 / 1; visibility: hidden; padding: 20px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); }
-.rdetail.on { visibility: visible; }
-.rdetail h3 { margin: 0 0 4px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
-.rdetail .co { margin-bottom: 12px; color: var(--mut); font-size: 14px; }
-.rdetail ul { margin: 0; padding-left: 18px; max-width: 72ch; color: var(--mut); font-size: 14.5px; }
-.rdetail li { margin-bottom: 6px; }
+/* Roles: a static vertical timeline, newest first. Dates on the left, a line with a dot per role, then the details. */
+.vtl { list-style: none; margin: 4px 0 0; padding: 0; }
+.vrole { display: grid; grid-template-columns: 130px 14px minmax(0, 1fr); gap: 0 20px; }
+.vwhen { padding-top: 1px; text-align: right; font: 400 13px var(--mono); color: var(--dim); }
+.vdur { display: block; margin-top: 6px; font-size: 11px; color: var(--accent); }
+.vline { position: relative; }
+.vline::before { content: ''; position: absolute; left: 6px; top: 16px; bottom: -4px; width: 2px; background: var(--line2); }
+.vline::after { content: ''; position: absolute; left: 1px; top: 4px; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+.vrole.latest .vline::after { background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+.vrole:last-child .vline::before { display: none; }
+.vbody { min-width: 0; padding-bottom: 36px; }
+.vrole:last-child .vbody { padding-bottom: 0; }
+.vwhen-inline { display: none; margin-bottom: 4px; font: 400 12px var(--mono); color: var(--dim); }
+.vbody h3 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
+.vbody .co { margin: 2px 0 10px; color: var(--mut); font-size: 14px; }
+.vbody ul { margin: 0; padding-left: 18px; color: var(--mut); font-size: 14.5px; }
+.vbody li { margin-bottom: 6px; }
 
 /* Small labels inside Experience: "Key results" above the tiles, "Roles" above the timeline. */
 .sub { margin: 0 0 14px; font: 500 14px var(--sans); color: var(--mut); }
 .sub-roles { margin-top: 44px; margin-bottom: 14px; }
-.hint { margin-left: 8px; font: 400 12px var(--mono); color: var(--dim); }
 
 /* Key results: KPI tiles, with the chosen one's details in a panel underneath. */
 .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
@@ -180,9 +180,10 @@ footer a:hover { color: var(--fg); }
 @media (max-width: 620px) {
   nav ul { display: none; }
   .skills { grid-template-columns: 1fr; }
-  /* Career path: the steps stack, and each one is indented a little more than the one before. */
-  .steps { grid-auto-flow: row; grid-auto-columns: auto; grid-template-columns: minmax(0, 1fr); align-items: stretch; }
-  .step { min-height: 0; margin-left: calc(var(--i, 0) * 14px); }
+  /* Timeline: the dates move above each title and the line stays on the left. */
+  .vrole { grid-template-columns: 14px minmax(0, 1fr); gap: 0 14px; }
+  .vwhen { display: none; }
+  .vwhen-inline { display: block; }
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .toggle { padding-inline: 10px; }
   .hero { padding-block: 56px 40px; }

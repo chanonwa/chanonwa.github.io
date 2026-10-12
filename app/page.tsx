@@ -1,5 +1,5 @@
 import { experience, highlights, profile, projects, skills } from '@/data/resume';
-import CareerPath from '@/components/CareerPath';
+import Timeline from '@/components/Timeline';
 import Highlights from '@/components/Highlights';
 import Projects from '@/components/Projects';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -36,8 +36,8 @@ export default function Home() {
         <section id="experience">
           <h2>Experience</h2>
           <Highlights id="highlights" title="Key results" items={highlights} />
-          <h3 className="sub sub-roles">Career path<span className="hint">select a step for details</span></h3>
-          <CareerPath jobs={experience} />
+          <h3 className="sub sub-roles">Roles</h3>
+          <Timeline jobs={experience} />
         </section>
 
         <section id="projects">
