@@ -227,7 +227,7 @@ export const projects: Project[] = [
       { src: '/projects/hongdee-frontdesk.png', caption: 'Front desk' },
       { src: '/projects/hongdee-analytics.png', caption: 'Analytics' },
     ],
-    sourceUrl: 'https://github.com/chanonwa/haven_pms',
+    sourceUrl: 'https://github.com/chanonwa/hongdee',
     variant: 'a',
   },
   // Placeholder. When the project is ready, replace this entry with its real description,
