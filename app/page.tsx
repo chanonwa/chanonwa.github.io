@@ -10,8 +10,8 @@ export default function Home() {
           <a className="logo" href="#top">{profile.handle}</a>
           <ul>
             <li><a href="#highlights">Highlights</a></li>
-            <li><a href="#experience">Experience</a></li>
             <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -36,6 +36,10 @@ export default function Home() {
           <Projects id="highlights" title="Highlights" items={highlights} />
         </section>
 
+        <section id="projects">
+          <Projects id="projects" title="Projects" items={projects} />
+        </section>
+
         <section id="experience">
           <h2>Experience</h2>
           {experience.map((j) => (
@@ -48,10 +52,6 @@ export default function Home() {
               </div>
             </div>
           ))}
-        </section>
-
-        <section id="projects">
-          <Projects id="projects" title="Projects" items={projects} />
         </section>
 
         <section id="education">
