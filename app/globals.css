@@ -130,8 +130,22 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .detail ul { margin: 0; padding-left: 18px; color: var(--mut); font-size: 14px; }
 
 /* Projects: image-led cards. The screenshot and links stay visible; "Details" opens the longer text. */
-.pgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
-.pcard { border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; min-width: 0; }
+/* One row that scrolls sideways. Three cards fit across the page; more than that scroll. */
+.sec-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 32px; margin-bottom: 28px; }
+.sec-head h2 { margin: 0; }
+.rail-btns { display: flex; gap: 8px; }
+.rail-btn { width: 36px; height: 32px; border-radius: 8px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font: 500 15px var(--mono); line-height: 1; cursor: pointer; }
+.rail-btn:hover { border-color: var(--fg); }
+.rail { display: flex; align-items: flex-start; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; scrollbar-width: none; cursor: grab; user-select: none; --fade: 56px; }
+.rail::-webkit-scrollbar { display: none; }
+/* Fade the side that still has more cards beyond it, instead of a hard cut. */
+.rail.fade-r { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - var(--fade)), transparent); mask-image: linear-gradient(to right, #000 calc(100% - var(--fade)), transparent); }
+.rail.fade-l { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - var(--fade)), transparent); mask-image: linear-gradient(to left, #000 calc(100% - var(--fade)), transparent); }
+.rail.fade-l.fade-r { -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent); mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent); }
+/* While dragging, turn snapping off so it does not fight the mouse. */
+.rail.dragging { cursor: grabbing; scroll-snap-type: none; }
+.rail.dragging a, .rail.dragging button { cursor: grabbing; }
+.pcard { flex: 0 0 calc((100% - 32px) / 3); scroll-snap-align: start; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; min-width: 0; }
 .pshot { position: relative; aspect-ratio: 16 / 10; border-bottom: 1px solid var(--line); overflow: hidden; background:
   radial-gradient(circle at 25% 25%, color-mix(in srgb, var(--accent) 40%, transparent), transparent 55%),
   radial-gradient(circle at 80% 85%, color-mix(in srgb, var(--ok) 30%, transparent), transparent 50%), var(--bg2); }
@@ -177,9 +191,14 @@ footer a:hover { color: var(--fg); }
   .career-row { grid-template-columns: 1fr; gap: 4px; }
   .career-ticks .odd { display: none; }
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .pgrid { grid-template-columns: 1fr; }
   .toggle { padding-inline: 10px; }
   .hero { padding-block: 56px 40px; }
+}
+@media (max-width: 760px) {
+  .pcard { flex-basis: calc((100% - 16px) / 2); }
+}
+@media (max-width: 520px) {
+  .pcard { flex-basis: 82%; }
 }
 @media (max-width: 420px) {
   .tiles { grid-template-columns: 1fr; }
