@@ -31,7 +31,7 @@ export const profile = {
   handle: 'chanon-wasusopon',
   headline: 'Business intelligence, from SQL to strategy.',
   intro:
-    'Business Intelligence Consultant Manager with four years at LINE Thailand, covering pricing, user segmentation and revenue forecasting. Earlier, a business analyst on telecom projects at Detecon.',
+    'Business Intelligence Consultant Manager with 8+ years of experience, including 4 years in data at LINE Thailand, the messaging application, covering pricing, user segmentation and revenue forecasting, and 4 years as a business analyst at Detecon, a German IT consultancy specializing in telecommunications.',
   status: 'MSc Business Analytics, Bayes Business School',
   email: 'cwasusopon@gmail.com',
   github: 'https://github.com/chanonwa',
