@@ -20,19 +20,21 @@ export default function Projects({ id, title, items }: { id: string; title: stri
               {p.image ? (
                 <div className="pshot">
                   <img src={p.image} alt={`${p.name} screenshot`} />
+                  {p.status && <span className="pstatus"><span className="pdot" />{p.status}</span>}
                 </div>
               ) : (
                 p.stat && (
                   <div className="pshot stat">
                     <strong>{p.stat.value}</strong>
                     <span>{p.stat.label}</span>
+                    {p.status && <span className="pstatus"><span className="pdot" />{p.status}</span>}
                   </div>
                 )
               )}
 
               <div className="pbody">
                 <h3>{p.name}</h3>
-                <div className="meta"><span>{p.role}</span><span>{p.year}</span></div>
+                <div className="meta"><span>{p.role}</span>{p.year && <span>{p.year}</span>}</div>
                 <p>{p.summary}</p>
                 <div className="tags">
                   {p.tags.map((t) => (
@@ -68,6 +70,16 @@ export default function Projects({ id, title, items }: { id: string; title: stri
                             <li key={h}>{h}</li>
                           ))}
                         </ul>
+                      )}
+                      {p.gallery && p.gallery.length > 0 && (
+                        <div className="pgallery">
+                          {p.gallery.map((g) => (
+                            <a key={g.src} className="pg-item" href={g.src} target="_blank" rel="noopener">
+                              <img src={g.src} alt={`${p.name}: ${g.caption}`} loading="lazy" />
+                              <span>{g.caption}</span>
+                            </a>
+                          ))}
+                        </div>
                       )}
                     </div>
                   </div>

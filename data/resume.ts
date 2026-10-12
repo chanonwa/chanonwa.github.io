@@ -23,6 +23,10 @@ export type Project = {
   highlights: string[];
   /** Big number shown beside the details when there is no image. */
   stat?: { value: string; label: string };
+  /** Small label shown on the card, for example "In progress". */
+  status?: string;
+  /** Extra screenshots, shown as thumbnails under the details. Each opens full size in a new tab. */
+  gallery?: { src: string; caption: string }[];
   /** Path under /public, e.g. "/projects/one.png". When set it replaces the stat panel. */
   image?: string;
   liveUrl?: string;
@@ -217,21 +221,43 @@ export const projects: Project[] = [
       'Seeded with a demo portfolio of 3 properties, 46 units and 14 months of history.',
     ],
     image: '/projects/haven-pms-dashboard.png',
+    status: 'In progress',
+    gallery: [
+      { src: '/projects/haven-pms-dashboard.png', caption: 'Dashboard' },
+      { src: '/projects/haven-pms-frontdesk.png', caption: 'Front desk' },
+      { src: '/projects/haven-pms-analytics.png', caption: 'Analytics' },
+    ],
     sourceUrl: 'https://github.com/chanonwa/haven_pms',
     variant: 'a',
+  },
+  // Placeholder with only the basics. Add the approach, results, tools, year, an `image` and a `sourceUrl`
+  // (for example the Kaggle notebook or a GitHub repo) when you have them.
+  {
+    name: 'Customer churn prediction',
+    summary: 'Predicting which customers are likely to leave, using a public customer churn dataset from Kaggle.',
+    tags: ['Kaggle', 'Churn'],
+    role: 'Personal project',
+    year: '',
+    description:
+      'A customer churn prediction project built on a public dataset from Kaggle. The approach and results will be added here.',
+    highlights: [],
+    stat: { value: 'Kaggle', label: 'customer churn prediction' },
+    status: 'In progress',
+    variant: 'c',
   },
   // Placeholder. When the project is ready, replace this entry with its real description,
   // highlights, an `image` and a `sourceUrl`.
   {
     name: 'Thai expense tracker',
-    summary: 'An expense tracker designed for use in Thailand. In progress.',
-    tags: ['In progress', 'Thailand'],
+    summary: 'An expense tracker designed for use in Thailand.',
+    tags: ['Thailand'],
     role: 'Personal project',
     year: '2026',
     description:
       'An expense tracker designed for Thailand. The project is being set up, and the details and source link will be added here once it is ready.',
     highlights: [],
-    stat: { value: 'In progress', label: 'expense tracker for Thailand' },
+    stat: { value: '฿', label: 'expense tracker for Thailand' },
+    status: 'In progress',
     variant: 'b',
   },
 ];
