@@ -230,21 +230,6 @@ export const projects: Project[] = [
     sourceUrl: 'https://github.com/chanonwa/haven_pms',
     variant: 'a',
   },
-  // Placeholder with only the basics. Add the approach, results, tools, year, an `image` and a `sourceUrl`
-  // (for example the Kaggle notebook or a GitHub repo) when you have them.
-  {
-    name: 'Customer churn prediction',
-    summary: 'Predicting which customers are likely to leave, using a public customer churn dataset from Kaggle.',
-    tags: ['Kaggle', 'Churn'],
-    role: 'Personal project',
-    year: '',
-    description:
-      'A customer churn prediction project built on a public dataset from Kaggle. The approach and results will be added here.',
-    highlights: [],
-    stat: { value: 'Kaggle', label: 'customer churn prediction' },
-    status: 'In progress',
-    variant: 'c',
-  },
   // Placeholder. When the project is ready, replace this entry with its real description,
   // highlights, an `image` and a `sourceUrl`.
   {
@@ -259,6 +244,21 @@ export const projects: Project[] = [
     stat: { value: '฿', label: 'expense tracker for Thailand' },
     status: 'In progress',
     variant: 'b',
+  },
+  // Placeholder with only the basics. Add the approach, results, tools, year, an `image` and a `sourceUrl`
+  // (for example the Kaggle notebook or a GitHub repo) when you have them.
+  {
+    name: 'Customer churn prediction',
+    summary: 'Predicting which customers are likely to leave, using a public customer churn dataset from Kaggle.',
+    tags: ['Kaggle', 'Churn'],
+    role: 'Personal project',
+    year: '',
+    description:
+      'A customer churn prediction project built on a public dataset from Kaggle. The approach and results will be added here.',
+    highlights: [],
+    stat: { value: 'Kaggle', label: 'customer churn prediction' },
+    status: 'In progress',
+    variant: 'c',
   },
 ];
 

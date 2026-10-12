@@ -136,7 +136,7 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .rail-btns { display: flex; gap: 8px; }
 .rail-btn { width: 36px; height: 32px; border-radius: 8px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font: 500 15px var(--mono); line-height: 1; cursor: pointer; }
 .rail-btn:hover { border-color: var(--fg); }
-.rail { display: flex; align-items: flex-start; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; scrollbar-width: none; cursor: grab; user-select: none; --fade: 56px; }
+.rail { display: flex; align-items: stretch; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; scrollbar-width: none; cursor: grab; user-select: none; --fade: 56px; }
 .rail::-webkit-scrollbar { display: none; }
 /* Fade the side that still has more cards beyond it, instead of a hard cut. */
 .rail.fade-r { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - var(--fade)), transparent); mask-image: linear-gradient(to right, #000 calc(100% - var(--fade)), transparent); }
@@ -145,20 +145,21 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 /* While dragging, turn snapping off so it does not fight the mouse. */
 .rail.dragging { cursor: grabbing; scroll-snap-type: none; }
 .rail.dragging a, .rail.dragging button { cursor: grabbing; }
-.pcard { flex: 0 0 calc((100% - 32px) / 3); scroll-snap-align: start; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; min-width: 0; }
-.pshot { position: relative; aspect-ratio: 16 / 10; border-bottom: 1px solid var(--line); overflow: hidden; background:
+/* Cards in the row are always the same size: they stretch to the tallest, and their buttons sit at the same height. */
+.pcard { flex: 0 0 calc((100% - 32px) / 3); display: flex; flex-direction: column; scroll-snap-align: start; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; min-width: 0; }
+.pshot { position: relative; flex: none; aspect-ratio: 16 / 10; border-bottom: 1px solid var(--line); overflow: hidden; background:
   radial-gradient(circle at 25% 25%, color-mix(in srgb, var(--accent) 40%, transparent), transparent 55%),
   radial-gradient(circle at 80% 85%, color-mix(in srgb, var(--ok) 30%, transparent), transparent 50%), var(--bg2); }
 .pshot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 .pshot.stat { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 16px; text-align: center; }
 .pshot.stat strong { font-size: clamp(32px, 6vw, 48px); line-height: 1; letter-spacing: -0.04em; font-weight: 700; color: var(--fg); }
 .pshot.stat span { font: 400 12px var(--mono); color: var(--mut); max-width: 28ch; text-wrap: balance; }
-.pbody { padding: 16px 18px 18px; }
+.pbody { flex: 1; display: flex; flex-direction: column; padding: 16px 18px 18px; }
 .pbody h3 { margin: 0 0 4px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
 .pbody p { margin: 0 0 12px; color: var(--mut); font-size: 14px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 14px; }
 .tag { font: 400 12px var(--mono); color: var(--mut); border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; }
-.pactions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+.pactions { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: auto; }
 .pactions .btn { height: 34px; font-size: 13px; }
 .ptoggle { height: 34px; padding-inline: 14px; border-radius: 8px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font: 500 13px var(--sans); cursor: pointer; }
 .ptoggle:hover { border-color: var(--fg); }
