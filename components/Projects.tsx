@@ -7,15 +7,23 @@ export default function Projects({ projects }: { projects: Project[] }) {
   const [open, setOpen] = useState<number | null>(null);
   const cards = useRef<(HTMLElement | null)[]>([]);
 
-  // Once a card has finished expanding, scroll just enough to bring all of it into view.
+  // Once a card has finished expanding, scroll it to the middle of the window.
   // Waiting for the 0.3s expand transition means the card has its final height by then.
+  // A card taller than the window is aligned to the top instead, so its heading stays visible.
   useEffect(() => {
     if (open === null) return;
     const card = cards.current[open];
     if (!card) return;
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const timer = window.setTimeout(
-      () => card.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'nearest' }),
+      () => {
+        // 104px = the nav clearance (84px) plus the bottom gap (20px) set in globals.css.
+        const tooTall = card.getBoundingClientRect().height > window.innerHeight - 104;
+        card.scrollIntoView({
+          behavior: reduce ? 'auto' : 'smooth',
+          block: tooTall ? 'start' : 'center',
+        });
+      },
       reduce ? 0 : 320,
     );
     return () => window.clearTimeout(timer);
