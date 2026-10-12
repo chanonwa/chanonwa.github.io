@@ -147,12 +147,12 @@ export const highlights: Project[] = [
     description:
       'Provided key insights to senior executives to support major business decisions and strategic optimization, and built automated dashboards to deliver them.',
     highlights: [
-      '20+ dynamic dashboards with multi-dimensional views, each tailored to its users.',
+      '20+ dynamic dashboards with multi-dimensional views, tailored to each user type.',
       'Conversion rate and churn patterns.',
       'Marketing campaign impact and internal service cannibalization.',
       'Purchase behavior and the quarterly revenue forecast.',
     ],
-    stat: { value: '20+', label: 'automated, multi-dimensional dashboards tailored to each user' },
+    stat: { value: '20+', label: 'automated, multi-dimensional dashboards tailored to each user type' },
     variant: 'c',
   },
   {
