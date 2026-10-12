@@ -15,6 +15,23 @@ export default function Projects({ projects }: { projects: Project[] }) {
   const panel = useRef<HTMLDivElement>(null);
   const cards = useRef<(HTMLElement | null)[]>([]);
 
+  // Fade the row's left and right edges only when there are more cards out of sight on that side.
+  const [edges, setEdges] = useState({ left: false, right: true });
+
+  function updateEdges() {
+    const row = rail.current;
+    if (!row) return;
+    const left = row.scrollLeft > 4;
+    const right = row.scrollLeft + row.clientWidth < row.scrollWidth - 4;
+    setEdges((prev) => (prev.left === left && prev.right === right ? prev : { left, right }));
+  }
+
+  useEffect(() => {
+    updateEdges();
+    window.addEventListener('resize', updateEdges);
+    return () => window.removeEventListener('resize', updateEdges);
+  }, []);
+
   // Drag the row sideways with a mouse. Touch screens already scroll it natively.
   const [dragging, setDragging] = useState(false);
   const drag = useRef({ active: false, moved: false, startX: 0, startScroll: 0, id: -1 });
@@ -106,9 +123,6 @@ export default function Projects({ projects }: { projects: Project[] }) {
     return () => window.clearTimeout(timer);
   }, [open]);
 
-  const current = projects[shown];
-  const hasVisual = Boolean(current?.image || current?.stat);
-
   return (
     <div>
       <div className="sec-head">
@@ -124,8 +138,9 @@ export default function Projects({ projects }: { projects: Project[] }) {
       </div>
 
       <div
-        className={`rail${dragging ? ' dragging' : ''}`}
+        className={`rail${dragging ? ' dragging' : ''}${edges.left ? ' fade-l' : ''}${edges.right ? ' fade-r' : ''}`}
         ref={rail}
+        onScroll={updateEdges}
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endDrag}
@@ -172,38 +187,45 @@ export default function Projects({ projects }: { projects: Project[] }) {
 
       <div className={`more${open !== null ? ' open' : ''}`} id="project-detail" ref={panel}>
         <div>
-          {current && (
-            <div className={`detail${hasVisual ? '' : ' solo'}`}>
-              {current.image ? (
-                <div className="shot">
-                  <img src={current.image} alt={`${current.name} screenshot`} />
-                </div>
-              ) : (
-                current.stat && (
-                  <div className="shot stat">
-                    <strong>{current.stat.value}</strong>
-                    <span>{current.stat.label}</span>
+          {/* Every project's panel sits in the same grid cell, so they all take the height of the tallest. */}
+          <div className="panels">
+            {projects.map((p, i) => (
+              <div
+                key={p.name}
+                className={`detail${p.image || p.stat ? '' : ' solo'}${shown === i ? ' on' : ''}`}
+                aria-hidden={shown !== i}
+              >
+                {p.image ? (
+                  <div className="shot">
+                    <img src={p.image} alt={`${p.name} screenshot`} />
                   </div>
-                )
-              )}
-              <div>
-                <h3>{current.name}</h3>
-                <div className="meta"><span>{current.role}</span><span>{current.year}</span></div>
-                <p>{current.description}</p>
-                <ul>
-                  {current.highlights.map((h) => (
-                    <li key={h}>{h}</li>
-                  ))}
-                </ul>
-                {(current.liveUrl || current.sourceUrl) && (
-                  <div className="links">
-                    {current.liveUrl && <a className="btn pri" href={current.liveUrl}>Live site</a>}
-                    {current.sourceUrl && <a className="btn" href={current.sourceUrl}>Source</a>}
-                  </div>
+                ) : (
+                  p.stat && (
+                    <div className="shot stat">
+                      <strong>{p.stat.value}</strong>
+                      <span>{p.stat.label}</span>
+                    </div>
+                  )
                 )}
+                <div>
+                  <h3>{p.name}</h3>
+                  <div className="meta"><span>{p.role}</span><span>{p.year}</span></div>
+                  <p>{p.description}</p>
+                  <ul>
+                    {p.highlights.map((h) => (
+                      <li key={h}>{h}</li>
+                    ))}
+                  </ul>
+                  {(p.liveUrl || p.sourceUrl) && (
+                    <div className="links">
+                      {p.liveUrl && <a className="btn pri" href={p.liveUrl}>Live site</a>}
+                      {p.sourceUrl && <a className="btn" href={p.sourceUrl}>Source</a>}
+                    </div>
+                  )}
+                </div>
               </div>
-            </div>
-          )}
+            ))}
+          </div>
         </div>
       </div>
     </div>

@@ -88,7 +88,12 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .rail-btns { display: flex; gap: 8px; }
 .rail-btn { width: 36px; height: 32px; border-radius: 8px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font: 500 15px var(--mono); line-height: 1; cursor: pointer; }
 .rail-btn:hover { border-color: var(--fg); }
-.rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; scrollbar-width: thin; scrollbar-color: var(--line2) transparent; cursor: grab; user-select: none; }
+.rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; scrollbar-width: none; cursor: grab; user-select: none; --fade: 56px; }
+.rail::-webkit-scrollbar { display: none; }
+/* Fade the side that still has more cards beyond it, instead of a hard cut. */
+.rail.fade-r { -webkit-mask-image: linear-gradient(to right, #000 calc(100% - var(--fade)), transparent); mask-image: linear-gradient(to right, #000 calc(100% - var(--fade)), transparent); }
+.rail.fade-l { -webkit-mask-image: linear-gradient(to left, #000 calc(100% - var(--fade)), transparent); mask-image: linear-gradient(to left, #000 calc(100% - var(--fade)), transparent); }
+.rail.fade-l.fade-r { -webkit-mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent); mask-image: linear-gradient(to right, transparent, #000 var(--fade), #000 calc(100% - var(--fade)), transparent); }
 /* While dragging, turn snapping off so it does not fight the mouse. */
 .rail.dragging { cursor: grabbing; scroll-snap-type: none; }
 .rail.dragging .proj-head { cursor: grabbing; }
@@ -114,6 +119,10 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .more.open { grid-template-rows: 1fr; }
 .more > div { overflow: hidden; min-height: 0; visibility: hidden; transition: visibility 0s linear 0.3s; }
 .more.open > div { visibility: visible; transition-delay: 0s; }
+/* All six panels share one grid cell, so every panel is as tall as the tallest and none changes size. */
+.panels { display: grid; }
+.panels > .detail { grid-area: 1 / 1; visibility: hidden; }
+.panels > .detail.on { visibility: inherit; }
 .detail { padding: 20px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: start; }
 .detail h3 { margin: 0 0 6px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
 .shot { aspect-ratio: 16 / 10; max-width: 100%; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background:
