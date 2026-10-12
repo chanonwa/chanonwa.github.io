@@ -60,7 +60,9 @@ export const experience: Job[] = [
       'Analyzed conversion, churn, campaign impact, purchase behavior and quarterly revenue forecasts for senior executives, supporting major business decisions.',
       'Led work with the strategy team on an optimized messaging pricing model: 20% year-over-year revenue increase with high client retention.',
       'Built 100+ SQL user segments from user logs, billing and demographic data: 70% adoption in two months, 15% uplift in annual revenue.',
-      'Defined KPIs for B2C and B2B services with global PMO, Sales, Marketing and Engineering teams, and built automated reports for business units.',
+      'Built automated reports for business units with SQL, Python and BI tools (Confluence, Datalore, Redash, Tableau), streamlining analytics workflows.',
+      'Defined KPIs for B2C and B2B services with global PMO, Sales, Marketing and Engineering teams.',
+      'Wrote queries to flag accounts breaching the Terms of Service, using messaging patterns, account age and naming conventions.',
       'Led workshops and coached junior analysts on data visualization and interpretation.',
     ],
   },
@@ -99,7 +101,7 @@ export const experience: Job[] = [
     company: 'WorkVenture Technologies Co., Ltd.',
     location: 'Bangkok, Thailand',
     points: [
-      'Benchmarked advertising products across traditional and digital markets to optimize marketing spend and maximize ROI.',
+      'Researched and benchmarked advertising products across traditional and digital markets to optimize marketing spend and maximize ROI.',
     ],
   },
 ];
@@ -113,9 +115,9 @@ export const highlights: Project[] = [
     role: 'Business Intelligence Consultant Manager, LINE Thailand',
     year: '2021 – 2025',
     description:
-      'Worked with the strategy team to develop an optimized pricing model for the application messaging scheme, using historical data.',
+      'Led collaboration with the strategy team to develop an optimized pricing model for the application messaging scheme.',
     highlights: [
-      'Led the collaboration with the strategy team.',
+      'Leveraged historical data to shape the pricing.',
       'Drove a 20% year-over-year revenue increase.',
       'Maintained high client retention.',
     ],
@@ -167,7 +169,7 @@ export const highlights: Project[] = [
       'Identified illegal or suspicious accounts.',
       'Used messaging patterns, account age and naming conventions as key indicators.',
     ],
-    stat: { value: '3', label: 'key indicators for flagging accounts' },
+    stat: { value: 'Multi-signal', label: 'flagging of illegal and suspicious accounts' },
     variant: 'a',
   },
   {
