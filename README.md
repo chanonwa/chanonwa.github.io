@@ -27,4 +27,4 @@ One-time setup: in the repo go to **Settings → Pages** and set **Source** to *
 
 ## Theme
 
-The Light/Night button in the nav switches themes. The choice is saved in the browser; the first visit follows the system setting.
+The Light/Night button in the nav switches themes. The choice is saved in the browser; the first visit always starts in light mode.

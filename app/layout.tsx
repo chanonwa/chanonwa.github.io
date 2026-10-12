@@ -9,8 +9,9 @@ export const metadata: Metadata = {
   description: profile.intro,
 };
 
-// Applies a saved theme before first paint so the page does not flash.
-const themeScript = `try{var t=localStorage.getItem('theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t)}catch(e){}`;
+// Light is the default. Only a saved "dark" choice changes it, applied before first paint so the page does not flash.
+// The key is "theme-choice" (not "theme") so choices saved before light became the default do not carry over.
+const themeScript = `try{if(localStorage.getItem('theme-choice')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

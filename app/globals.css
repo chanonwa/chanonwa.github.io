@@ -1,5 +1,20 @@
-/* Dark-first tokens. Light values apply via system preference or data-theme="light". */
+/* Light is the default for every visitor. Dark applies only when they pick it (data-theme="dark"). */
 :root {
+  --bg: #fff;
+  --bg2: #fafafa;
+  --card: #fff;
+  --line: #eaeaea;
+  --line2: #d4d4d4;
+  --fg: #171717;
+  --mut: #666;
+  --dim: #8f8f8f;
+  --accent: #0070f3;
+  --ok: #0a8f6f;
+  --sans: var(--font-geist-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --mono: var(--font-geist-mono), ui-monospace, Consolas, monospace;
+  color-scheme: light;
+}
+:root[data-theme='dark'] {
   --bg: #000;
   --bg2: #0a0a0a;
   --card: #0a0a0a;
@@ -8,23 +23,8 @@
   --fg: #ededed;
   --mut: #a1a1a1;
   --dim: #6b6b6b;
-  --accent: #0070f3;
   --ok: #50e3c2;
-  --sans: var(--font-geist-sans), system-ui, -apple-system, 'Segoe UI', sans-serif;
-  --mono: var(--font-geist-mono), ui-monospace, Consolas, monospace;
   color-scheme: dark;
-}
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme='dark']) {
-    --bg: #fff; --bg2: #fafafa; --card: #fff; --line: #eaeaea; --line2: #d4d4d4;
-    --fg: #171717; --mut: #666; --dim: #8f8f8f; --ok: #0a8f6f;
-    color-scheme: light;
-  }
-}
-:root[data-theme='light'] {
-  --bg: #fff; --bg2: #fafafa; --card: #fff; --line: #eaeaea; --line2: #d4d4d4;
-  --fg: #171717; --mut: #666; --dim: #8f8f8f; --ok: #0a8f6f;
-  color-scheme: light;
 }
 
 * { box-sizing: border-box; }

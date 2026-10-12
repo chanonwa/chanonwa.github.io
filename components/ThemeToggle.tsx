@@ -4,24 +4,24 @@ import { useEffect, useState } from 'react';
 
 type Theme = 'light' | 'dark';
 
-function systemTheme(): Theme {
-  return window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-}
-
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<Theme>('dark');
+  // Light is the default. The layout script has already applied a saved "dark" choice before paint.
+  const [theme, setTheme] = useState<Theme>('light');
 
   useEffect(() => {
-    const attr = document.documentElement.getAttribute('data-theme');
-    setTheme(attr === 'light' || attr === 'dark' ? attr : systemTheme());
+    setTheme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
   }, []);
 
   function toggle() {
     const next: Theme = theme === 'dark' ? 'light' : 'dark';
     setTheme(next);
-    document.documentElement.setAttribute('data-theme', next);
+    if (next === 'dark') {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
     try {
-      localStorage.setItem('theme', next);
+      localStorage.setItem('theme-choice', next);
     } catch {}
   }
 
