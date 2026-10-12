@@ -82,13 +82,16 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .job ul { margin: 0; padding-left: 18px; color: var(--mut); font-size: 14.5px; min-width: 0; }
 .job li { margin-bottom: 4px; }
 
-/* Projects */
-.grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 16px; }
-.proj { border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; transition: border-color 0.15s; display: flex; flex-direction: column; min-width: 0; position: relative; }
+/* Projects: one scrolling row of cards, with the chosen project's details in a panel underneath. */
+.sec-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+.sec-head h2 { margin: 0; }
+.rail-btns { display: flex; gap: 8px; }
+.rail-btn { width: 36px; height: 32px; border-radius: 8px; border: 1px solid var(--line2); background: transparent; color: var(--fg); font: 500 15px var(--mono); line-height: 1; cursor: pointer; }
+.rail-btn:hover { border-color: var(--fg); }
+.rail { display: flex; gap: 16px; overflow-x: auto; scroll-snap-type: x proximity; padding-bottom: 14px; scrollbar-width: thin; scrollbar-color: var(--line2) transparent; }
+.proj { flex: 0 0 260px; scroll-snap-align: start; border: 1px solid var(--line); border-radius: 12px; background: var(--card); overflow: hidden; transition: border-color 0.15s; display: flex; flex-direction: column; position: relative; }
 .proj:hover { border-color: var(--line2); }
-.proj.open { grid-column: 1 / -1; border-color: var(--fg); }
-/* Leaves room for the sticky nav (about 69px) when a card is scrolled into view. Keep in step with the 104px in Projects.tsx. */
-.proj { scroll-margin-top: 84px; scroll-margin-bottom: 20px; }
+.proj.open { border-color: var(--fg); }
 .proj-head { all: unset; box-sizing: border-box; display: block; width: 100%; cursor: pointer; }
 .proj-head:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; border-radius: 12px; }
 .cue { position: absolute; top: 10px; right: 10px; width: 28px; height: 28px; display: grid; place-items: center; border-radius: 50%; background: var(--bg); border: 1px solid var(--line2); font: 500 16px var(--mono); line-height: 1; pointer-events: none; }
@@ -103,10 +106,13 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .proj p { margin: 0 0 12px; color: var(--mut); font-size: 14px; }
 .tags { display: flex; flex-wrap: wrap; gap: 6px; }
 .tag { font: 400 12px var(--mono); color: var(--mut); border: 1px solid var(--line); border-radius: 6px; padding: 2px 8px; }
+/* The panel slides open by animating its row height; it is hidden from keyboards and screen readers when closed. */
 .more { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.3s ease; }
-.proj.open .more { grid-template-rows: 1fr; }
-.more > div { overflow: hidden; min-height: 0; }
-.detail { padding: 0 18px 20px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: start; }
+.more.open { grid-template-rows: 1fr; }
+.more > div { overflow: hidden; min-height: 0; visibility: hidden; transition: visibility 0s linear 0.3s; }
+.more.open > div { visibility: visible; transition-delay: 0s; }
+.detail { padding: 20px 18px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); display: grid; grid-template-columns: 1.1fr 1fr; gap: 20px; align-items: start; }
+.detail h3 { margin: 0 0 6px; font-size: 18px; font-weight: 600; letter-spacing: -0.01em; }
 .shot { aspect-ratio: 16 / 10; max-width: 100%; border: 1px solid var(--line); border-radius: 10px; overflow: hidden; background:
   radial-gradient(circle at 25% 25%, color-mix(in srgb, var(--accent) 40%, transparent), transparent 55%),
   radial-gradient(circle at 80% 85%, color-mix(in srgb, var(--ok) 30%, transparent), transparent 50%), var(--bg2);
@@ -141,5 +147,5 @@ footer a:hover { color: var(--fg); }
   .hero { padding-block: 56px 40px; }
 }
 @media (prefers-reduced-motion: reduce) {
-  .proj, .more { transition: none; }
+  .proj, .more, .more > div { transition: none; }
 }

@@ -32,7 +32,6 @@ export default function Home() {
         </header>
 
         <section id="projects">
-          <h2>Projects</h2>
           <Projects projects={projects} />
         </section>
 
