@@ -1,4 +1,5 @@
-import { education, experience, highlights, profile, projects, skills } from '@/data/resume';
+import { experience, highlights, profile, projects, skills } from '@/data/resume';
+import CareerChart from '@/components/CareerChart';
 import Highlights from '@/components/Highlights';
 import Projects from '@/components/Projects';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -10,9 +11,8 @@ export default function Home() {
         <div className="in">
           <a className="logo" href="#top">{profile.handle}</a>
           <ul>
-            <li><a href="#highlights">Highlights</a></li>
-            <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -28,46 +28,30 @@ export default function Home() {
           <h1>{profile.name}.<br /><span>{profile.headline}</span></h1>
           <p className="lede">{profile.intro}</p>
           <div className="cta">
-            <a className="btn pri" href="#highlights">See highlights</a>
+            <a className="btn pri" href="#experience">See experience</a>
             <a className="btn" href="#contact">Get in touch</a>
           </div>
         </header>
 
-        <section id="highlights">
-          <Highlights id="highlights" title="Highlights" items={highlights} />
-        </section>
-
-        <section id="projects">
-          <Projects id="projects" title="Projects" items={projects} />
-        </section>
-
         <section id="experience">
           <h2>Experience</h2>
-          {experience.map((j) => (
-            <div className="job" key={j.period + j.title}>
-              <div className="when">{j.period}</div>
-              <div>
+          <Highlights id="highlights" title="Key results" items={highlights} />
+          <h3 className="sub sub-roles">Roles</h3>
+          <CareerChart jobs={experience} />
+          <div className="timeline">
+            {experience.map((j) => (
+              <div className="job" key={j.period + j.title}>
+                <div className="when">{j.period}</div>
                 <h3>{j.title}</h3>
                 <div className="co">{j.company} · {j.location}</div>
                 <ul>{j.points.map((p) => <li key={p}>{p}</li>)}</ul>
               </div>
-            </div>
-          ))}
-        </section>
-
-        <section id="education">
-          <h2>Education</h2>
-          <div className="edu-list">
-            {education.map((e) => (
-              <div className="edu" key={e.degree}>
-                <div>
-                  <strong>{e.degree}</strong>
-                  <div className="co">{e.school}</div>
-                </div>
-                <div className="when">{e.period}</div>
-              </div>
             ))}
           </div>
+        </section>
+
+        <section id="projects">
+          <Projects id="projects" title="Projects" items={projects} />
         </section>
 
         <section id="skills">

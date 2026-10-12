@@ -2,6 +2,11 @@
 
 export type Job = {
   period: string;
+  /** Short employer name used on the career chart. */
+  short: string;
+  /** Years used to place the role on the career chart. A role with start equal to end is drawn as a dot. */
+  start: number;
+  end: number;
   title: string;
   company: string;
   location: string;
@@ -41,6 +46,9 @@ export const profile = {
 export const experience: Job[] = [
   {
     period: '2021 – 2025',
+    short: 'LINE Thailand',
+    start: 2021,
+    end: 2025,
     title: 'Business Intelligence Consultant Manager',
     company: 'LINE Company (Thailand) Co., Ltd.',
     location: 'Bangkok, Thailand',
@@ -54,6 +62,9 @@ export const experience: Job[] = [
   },
   {
     period: '2017 – 2021',
+    short: 'Detecon',
+    start: 2017,
+    end: 2021,
     title: 'Business Analyst',
     company: 'Detecon Asia-Pacific Ltd.',
     location: 'Bangkok, Thailand',
@@ -64,6 +75,9 @@ export const experience: Job[] = [
   },
   {
     period: '2017',
+    short: 'Atos',
+    start: 2017,
+    end: 2017,
     title: 'Application Support Analyst, Trainee (SAP CS)',
     company: 'Atos IT Solutions and Services Limited',
     location: 'Bangkok, Thailand',
@@ -74,6 +88,9 @@ export const experience: Job[] = [
   },
   {
     period: '2016',
+    short: 'WorkVenture',
+    start: 2016,
+    end: 2016,
     title: 'Marketing Intern',
     company: 'WorkVenture Technologies Co., Ltd.',
     location: 'Bangkok, Thailand',
@@ -83,7 +100,7 @@ export const experience: Job[] = [
   },
 ];
 
-// The Highlights tiles are drawn from the experience above. Each shows its `stat` (the big number) on the tile.
+// The "Key results" tiles at the top of Experience are drawn from the roles above. Each shows its `stat` (the big number).
 export const highlights: Project[] = [
   {
     name: 'Messaging pricing model',
@@ -226,18 +243,4 @@ export const skills: { group: string; items: string[] }[] = [
   },
   { group: 'BI tools', items: ['Confluence', 'Datalore', 'Redash', 'Tableau'] },
   { group: 'Languages', items: ['Thai (Native)', 'English (Advanced)', 'Chinese (Basic)'] },
-];
-
-export const education = [
-  { degree: 'MSc Business Analytics', school: 'Bayes Business School, United Kingdom', period: '2025 – 2026' },
-  {
-    degree: 'BSc Computer Science (Upper second-class)',
-    school: 'University of Essex, United Kingdom',
-    period: '2013 – 2016',
-  },
-  {
-    degree: 'International Baccalaureate Certificate',
-    school: 'Concordian International School, Thailand',
-    period: '2008 – 2013',
-  },
 ];

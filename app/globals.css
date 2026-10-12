@@ -74,15 +74,35 @@ section { padding-block: 48px; border-top: 1px solid var(--line); scroll-margin-
 h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1em; color: var(--dim); margin: 0 0 28px; }
 
 /* Experience */
-.job { display: grid; grid-template-columns: 150px 1fr; gap: 8px 24px; padding-block: 20px; border-bottom: 1px solid var(--line); }
-.job:last-child { border: 0; }
-.when { font: 400 13px var(--mono); color: var(--dim); padding-top: 3px; }
+/* Career chart: one row per role on a shared year axis. */
+.career { display: grid; gap: 10px; margin: 4px 0 36px; }
+.career-axis, .career-row { display: grid; grid-template-columns: 130px minmax(0, 1fr); gap: 16px; align-items: center; }
+.career-ticks { position: relative; height: 16px; font: 400 11px var(--mono); color: var(--dim); }
+.career-ticks span { position: absolute; top: 0; }
+.career-label { font: 400 12px var(--mono); color: var(--mut); }
+.career-track { position: relative; height: 28px; border-right: 1px solid var(--line); background-image: linear-gradient(to right, var(--line) 1px, transparent 1px); }
+.career-bar { position: absolute; top: 3px; bottom: 3px; display: flex; align-items: center; padding-inline: 10px; border-radius: 6px; background: var(--accent); color: #fff; font: 500 11px var(--mono); white-space: nowrap; overflow: hidden; }
+.career-dot { position: absolute; top: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+.career-note { position: absolute; top: 50%; transform: translateY(-50%); margin-left: 16px; font: 400 11px var(--mono); color: var(--mut); white-space: nowrap; }
+
+/* Roles on a vertical timeline: a dot per role on a spine. */
+.timeline { margin-top: 8px; }
+.job { position: relative; padding: 0 0 30px 32px; }
+.job::before { content: ''; position: absolute; left: 0; top: 4px; width: 12px; height: 12px; box-sizing: border-box; border-radius: 50%; background: var(--bg); border: 2px solid var(--accent); }
+.job::after { content: ''; position: absolute; left: 5px; top: 22px; bottom: 6px; width: 2px; background: var(--line2); }
+.job:last-child { padding-bottom: 0; }
+.job:last-child::after { display: none; }
+.when { margin-bottom: 4px; font: 400 13px var(--mono); color: var(--dim); }
 .job h3 { margin: 0; font-size: 17px; font-weight: 600; letter-spacing: -0.01em; }
 .job .co { color: var(--mut); font-size: 14px; margin-bottom: 8px; }
 .job ul { margin: 0; padding-left: 18px; color: var(--mut); font-size: 14.5px; min-width: 0; }
 .job li { margin-bottom: 4px; }
 
-/* Highlights: KPI tiles, with the chosen one's details in a panel underneath. */
+/* Small labels inside Experience: "Key results" above the tiles, "Roles" above the timeline. */
+.sub { margin: 0 0 14px; font: 500 14px var(--sans); color: var(--mut); }
+.sub-roles { margin-top: 44px; margin-bottom: 4px; }
+
+/* Key results: KPI tiles, with the chosen one's details in a panel underneath. */
 .tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
 .tile { all: unset; box-sizing: border-box; position: relative; display: flex; flex-direction: column; gap: 6px; min-width: 0; padding: 18px 18px 16px; border: 1px solid var(--line); border-radius: 12px; background: var(--card); cursor: pointer; transition: border-color 0.15s; }
 .tile:hover { border-color: var(--line2); }
@@ -132,21 +152,23 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
 .pdetail p { margin: 0 0 10px; color: var(--fg); font-size: 14px; }
 .pdetail ul { margin: 0; padding-left: 18px; color: var(--mut); font-size: 14px; }
 
-/* Skills, education, footer */
+/* Skills, footer */
 .skills { display: grid; grid-template-columns: 150px 1fr; gap: 14px 24px; margin: 0; }
 .skills dt { font: 400 13px var(--mono); color: var(--dim); padding-top: 3px; }
 .skills dd { margin: 0; display: flex; flex-wrap: wrap; gap: 8px; }
 .chip { border: 1px solid var(--line2); border-radius: 999px; padding: 3px 12px; font-size: 13.5px; }
-.edu-list { display: grid; gap: 18px; }
-.edu { display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; }
-.edu .co { color: var(--mut); font-size: 14px; }
 footer { border-top: 1px solid var(--line); padding-block: 32px 48px; display: flex; flex-wrap: wrap; gap: 16px 24px; justify-content: space-between; color: var(--dim); font: 400 13px var(--mono); }
 footer .links { display: flex; gap: 20px; }
 footer a:hover { color: var(--fg); }
 
 @media (max-width: 620px) {
   nav ul { display: none; }
-  .job, .skills { grid-template-columns: 1fr; }
+  .skills { grid-template-columns: 1fr; }
+  /* Career chart: the employer name sits above its bar, and only every other year is labelled. */
+  .career-axis { grid-template-columns: 1fr; }
+  .career-axis > span:first-child { display: none; }
+  .career-row { grid-template-columns: 1fr; gap: 4px; }
+  .career-ticks .odd { display: none; }
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .pgrid { grid-template-columns: 1fr; }
   .toggle { padding-inline: 10px; }

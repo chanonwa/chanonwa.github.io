@@ -50,7 +50,7 @@ export default function Highlights({ id, title, items }: { id: string; title: st
 
   return (
     <div>
-      <h2>{title}</h2>
+      <h3 className="sub">{title}</h3>
 
       <div className="tiles">
         {items.map((p, i) => {
