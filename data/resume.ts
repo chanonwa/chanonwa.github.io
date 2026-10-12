@@ -207,7 +207,7 @@ export const highlights: Project[] = [
 // A project with an `image` shows it at the top of its card; otherwise the `stat` is shown there.
 export const projects: Project[] = [
   {
-    name: 'HongDee',
+    name: 'RentDee',
     summary: 'Apartment and hostel management in one data model, with built-in analytics.',
     tags: ['Python', 'FastAPI', 'SQLAlchemy', 'Property analytics'],
     role: 'Personal project',
@@ -220,14 +220,14 @@ export const projects: Project[] = [
       'FastAPI and SQLAlchemy backend with JWT login, four user roles and 29 end-to-end API tests.',
       'Seeded with a demo portfolio of 3 properties, 46 units and 14 months of history.',
     ],
-    image: '/projects/hongdee-dashboard.png',
+    image: '/projects/rentdee-dashboard.png',
     status: 'In progress',
     gallery: [
-      { src: '/projects/hongdee-dashboard.png', caption: 'Dashboard' },
-      { src: '/projects/hongdee-frontdesk.png', caption: 'Front desk' },
-      { src: '/projects/hongdee-analytics.png', caption: 'Analytics' },
+      { src: '/projects/rentdee-dashboard.png', caption: 'Dashboard' },
+      { src: '/projects/rentdee-frontdesk.png', caption: 'Front desk' },
+      { src: '/projects/rentdee-analytics.png', caption: 'Analytics' },
     ],
-    sourceUrl: 'https://github.com/chanonwa/hongdee',
+    sourceUrl: 'https://github.com/chanonwa/rentdee',
     variant: 'a',
   },
   // Placeholder. When the project is ready, replace this entry with its real description,
