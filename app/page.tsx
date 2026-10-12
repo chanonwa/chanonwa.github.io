@@ -1,4 +1,4 @@
-import { education, experience, profile, projects, skills } from '@/data/resume';
+import { education, experience, highlights, profile, projects, skills } from '@/data/resume';
 import Projects from '@/components/Projects';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -9,8 +9,9 @@ export default function Home() {
         <div className="in">
           <a className="logo" href="#top">{profile.handle}</a>
           <ul>
-            <li><a href="#projects">Projects</a></li>
+            <li><a href="#highlights">Highlights</a></li>
             <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#skills">Skills</a></li>
             <li><a href="#contact">Contact</a></li>
           </ul>
@@ -26,13 +27,13 @@ export default function Home() {
           <h1>{profile.name}.<br /><span>{profile.headline}</span></h1>
           <p className="lede">{profile.intro}</p>
           <div className="cta">
-            <a className="btn pri" href="#projects">See projects</a>
+            <a className="btn pri" href="#highlights">See highlights</a>
             <a className="btn" href="#contact">Get in touch</a>
           </div>
         </header>
 
-        <section id="projects">
-          <Projects projects={projects} />
+        <section id="highlights">
+          <Projects id="highlights" title="Highlights" items={highlights} />
         </section>
 
         <section id="experience">
@@ -47,6 +48,10 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </section>
+
+        <section id="projects">
+          <Projects id="projects" title="Projects" items={projects} />
         </section>
 
         <section id="education">

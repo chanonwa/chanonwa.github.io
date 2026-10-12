@@ -83,8 +83,8 @@ export const experience: Job[] = [
   },
 ];
 
-// The Projects cards are drawn from the experience above. Add an `image` (in public/projects/) to any card to show a photo instead of the big number.
-export const projects: Project[] = [
+// The Highlights cards are drawn from the experience above. Add an `image` (in public/projects/) to any card to show a photo instead of the big number.
+export const highlights: Project[] = [
   {
     name: 'Messaging pricing model',
     summary: 'Optimized pricing for the application messaging scheme, driving a 20% year-over-year revenue increase.',
@@ -179,6 +179,42 @@ export const projects: Project[] = [
     ],
     stat: { value: 'Nationwide', label: 'signal-quality survey across all service providers' },
     variant: 'c',
+  },
+];
+
+// Personal projects. Each can have an `image` (in public/projects/), a `liveUrl` and a `sourceUrl`.
+export const projects: Project[] = [
+  {
+    name: 'Haven PMS',
+    summary: 'Apartment and hostel management in one data model, with built-in analytics.',
+    tags: ['Python', 'FastAPI', 'JavaScript'],
+    role: 'Personal project',
+    year: '2026',
+    description:
+      'A working draft of a property management system that covers long-stay lettings (apartments, leases, monthly rent) and short-stay hostel trading (dorms, beds, nightly bookings). Both settle into a single invoice and payment ledger, which makes portfolio-wide analytics possible.',
+    highlights: [
+      'Analytics for occupancy, monthly recurring rent, collection rate, aged debt, ADR, RevPAR, channel mix and net operating income per property.',
+      'A rule-based advisor that names the empty units, under-market rents, overdue accounts and stale repairs costing money right now.',
+      'FastAPI and SQLAlchemy backend with JWT login, four user roles and 22 end-to-end API tests.',
+      'Seeded with a demo portfolio of 3 properties, 46 units and 14 months of history.',
+    ],
+    image: '/projects/haven-pms-dashboard.png',
+    sourceUrl: 'https://github.com/chanonwa/haven_pms',
+    variant: 'a',
+  },
+  // Placeholder. When the project is ready, replace this entry with its real description,
+  // highlights, an `image` and a `sourceUrl`.
+  {
+    name: 'Thai expense tracker',
+    summary: 'An expense tracker designed for use in Thailand. In progress.',
+    tags: ['In progress', 'Thailand'],
+    role: 'Personal project',
+    year: '2026',
+    description:
+      'An expense tracker designed for Thailand. The project is being set up, and the details and source link will be added here once it is ready.',
+    highlights: [],
+    stat: { value: 'In progress', label: 'expense tracker for Thailand' },
+    variant: 'b',
   },
 ];
 

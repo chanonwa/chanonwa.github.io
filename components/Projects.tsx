@@ -7,7 +7,8 @@ import type { Project } from '@/data/resume';
 const scrollBehavior = (): ScrollBehavior =>
   window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
 
-export default function Projects({ projects }: { projects: Project[] }) {
+// One scrolling row of cards with a details panel underneath. Used for both Highlights and Projects.
+export default function Projects({ id, title, items }: { id: string; title: string; items: Project[] }) {
   const [open, setOpen] = useState<number | null>(null);
   // The panel keeps the last project's text while it slides closed.
   const [shown, setShown] = useState(0);
@@ -126,15 +127,18 @@ export default function Projects({ projects }: { projects: Project[] }) {
   return (
     <div>
       <div className="sec-head">
-        <h2>Projects</h2>
-        <div className="rail-btns">
-          <button className="rail-btn" type="button" aria-label="Scroll projects left" onClick={() => nudge(-1)}>
-            ←
-          </button>
-          <button className="rail-btn" type="button" aria-label="Scroll projects right" onClick={() => nudge(1)}>
-            →
-          </button>
-        </div>
+        <h2>{title}</h2>
+        {/* Three cards fit across the page, so the buttons only matter beyond that. */}
+        {items.length > 3 && (
+          <div className="rail-btns">
+            <button className="rail-btn" type="button" aria-label={`Scroll ${title.toLowerCase()} left`} onClick={() => nudge(-1)}>
+              ←
+            </button>
+            <button className="rail-btn" type="button" aria-label={`Scroll ${title.toLowerCase()} right`} onClick={() => nudge(1)}>
+              →
+            </button>
+          </div>
+        )}
       </div>
 
       <div
@@ -148,7 +152,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
         onLostPointerCapture={endDrag}
         onClickCapture={onClickCapture}
       >
-        {projects.map((p, i) => {
+        {items.map((p, i) => {
           const isOpen = open === i;
           return (
             <article
@@ -162,7 +166,7 @@ export default function Projects({ projects }: { projects: Project[] }) {
                 className="proj-head"
                 type="button"
                 aria-expanded={isOpen}
-                aria-controls="project-detail"
+                aria-controls={`${id}-detail`}
                 onClick={() => toggle(i)}
               >
                 <div
@@ -185,11 +189,11 @@ export default function Projects({ projects }: { projects: Project[] }) {
         })}
       </div>
 
-      <div className={`more${open !== null ? ' open' : ''}`} id="project-detail" ref={panel}>
+      <div className={`more${open !== null ? ' open' : ''}`} id={`${id}-detail`} ref={panel}>
         <div>
           {/* Every project's panel sits in the same grid cell, so they all take the height of the tallest. */}
           <div className="panels">
-            {projects.map((p, i) => (
+            {items.map((p, i) => (
               <div
                 key={p.name}
                 className={`detail${p.image || p.stat ? '' : ' solo'}${shown === i ? ' on' : ''}`}
@@ -211,11 +215,13 @@ export default function Projects({ projects }: { projects: Project[] }) {
                   <h3>{p.name}</h3>
                   <div className="meta"><span>{p.role}</span><span>{p.year}</span></div>
                   <p>{p.description}</p>
-                  <ul>
-                    {p.highlights.map((h) => (
-                      <li key={h}>{h}</li>
-                    ))}
-                  </ul>
+                  {p.highlights.length > 0 && (
+                    <ul>
+                      {p.highlights.map((h) => (
+                        <li key={h}>{h}</li>
+                      ))}
+                    </ul>
+                  )}
                   {(p.liveUrl || p.sourceUrl) && (
                     <div className="links">
                       {p.liveUrl && <a className="btn pri" href={p.liveUrl}>Live site</a>}

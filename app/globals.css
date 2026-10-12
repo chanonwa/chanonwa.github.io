@@ -108,7 +108,7 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
   radial-gradient(circle at 80% 90%, color-mix(in srgb, var(--ok) 25%, transparent), transparent 50%), var(--bg2); }
 .thumb.b { background: linear-gradient(135deg, var(--bg2), color-mix(in srgb, var(--fg) 12%, var(--bg2))); }
 .thumb.c { background: repeating-linear-gradient(45deg, var(--bg2) 0 12px, color-mix(in srgb, var(--fg) 6%, var(--bg2)) 12px 24px); }
-.thumb.img { background-size: cover; background-position: center; }
+.thumb.img { background-size: cover; background-position: top; }
 .proj .body { padding: 16px 18px 18px; }
 .proj h3 { margin: 0 0 4px; font-size: 16px; font-weight: 600; }
 .proj p { margin: 0 0 12px; color: var(--mut); font-size: 14px; }
@@ -129,7 +129,7 @@ h2 { font: 500 12px var(--mono); text-transform: uppercase; letter-spacing: 0.1e
   radial-gradient(circle at 25% 25%, color-mix(in srgb, var(--accent) 40%, transparent), transparent 55%),
   radial-gradient(circle at 80% 85%, color-mix(in srgb, var(--ok) 30%, transparent), transparent 50%), var(--bg2);
   display: grid; place-items: center; font: 400 12px var(--mono); color: var(--dim); }
-.shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shot img { width: 100%; height: 100%; object-fit: cover; object-position: top; display: block; }
 .shot.stat { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 16px; text-align: center; }
 .shot.stat strong { font-size: clamp(32px, 6vw, 48px); line-height: 1; letter-spacing: -0.04em; font-weight: 700; color: var(--fg); }
 .shot.stat span { font: 400 12px var(--mono); color: var(--mut); max-width: 28ch; text-wrap: balance; }
