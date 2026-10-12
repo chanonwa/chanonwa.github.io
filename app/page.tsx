@@ -1,5 +1,5 @@
 import { experience, highlights, profile, projects, skills } from '@/data/resume';
-import CareerChart from '@/components/CareerChart';
+import CareerPath from '@/components/CareerPath';
 import Highlights from '@/components/Highlights';
 import Projects from '@/components/Projects';
 import ThemeToggle from '@/components/ThemeToggle';
@@ -36,18 +36,8 @@ export default function Home() {
         <section id="experience">
           <h2>Experience</h2>
           <Highlights id="highlights" title="Key results" items={highlights} />
-          <h3 className="sub sub-roles">Roles</h3>
-          <CareerChart jobs={experience} />
-          <div className="timeline">
-            {experience.map((j) => (
-              <div className="job" key={j.period + j.title}>
-                <div className="when">{j.period}</div>
-                <h3>{j.title}</h3>
-                <div className="co">{j.company} · {j.location}</div>
-                <ul>{j.points.map((p) => <li key={p}>{p}</li>)}</ul>
-              </div>
-            ))}
-          </div>
+          <h3 className="sub sub-roles">Career path<span className="hint">select a step for details</span></h3>
+          <CareerPath jobs={experience} />
         </section>
 
         <section id="projects">
