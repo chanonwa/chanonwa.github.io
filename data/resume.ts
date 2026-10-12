@@ -140,18 +140,19 @@ export const highlights: Project[] = [
   },
   {
     name: 'Executive analysis and forecasting',
-    summary: 'Complex analysis and quarterly revenue forecasts for senior executives.',
-    tags: ['Forecasting', 'Executive reporting'],
+    summary: 'Complex analysis for senior executives, delivered through automated, multi-dimensional dashboards.',
+    tags: ['Forecasting', 'Executive reporting', 'Dashboards'],
     role: 'Business Intelligence Consultant Manager, LINE Thailand',
     year: '2021 – 2025',
     description:
-      'Provided key insights to senior executives to support major business decisions and strategic optimization.',
+      'Provided key insights to senior executives to support major business decisions and strategic optimization, and built automated dashboards to deliver them.',
     highlights: [
+      'Multiple dynamic dashboards with multi-dimensional views, each tailored to its users.',
       'Conversion rate and churn patterns.',
       'Marketing campaign impact and internal service cannibalization.',
       'Purchase behavior and the quarterly revenue forecast.',
     ],
-    stat: { value: 'Quarterly', label: 'revenue forecast for senior executives' },
+    stat: { value: 'Automated', label: 'dynamic, multi-dimensional dashboards tailored to each user' },
     variant: 'c',
   },
   {
