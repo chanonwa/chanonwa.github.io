@@ -209,7 +209,7 @@ export const projects: Project[] = [
   {
     name: 'HongDee',
     summary: 'Apartment and hostel management in one data model, with built-in analytics.',
-    tags: ['Python', 'FastAPI', 'JavaScript'],
+    tags: ['Python', 'FastAPI', 'SQLAlchemy', 'Property analytics'],
     role: 'Personal project',
     year: '2026',
     description:
@@ -217,7 +217,7 @@ export const projects: Project[] = [
     highlights: [
       'Analytics for occupancy, monthly recurring rent, collection rate, aged debt, ADR, RevPAR, channel mix and net operating income per property.',
       'A rule-based advisor that names the empty units, under-market rents, overdue accounts and stale repairs costing money right now.',
-      'FastAPI and SQLAlchemy backend with JWT login, four user roles and 24 end-to-end API tests.',
+      'FastAPI and SQLAlchemy backend with JWT login, four user roles and 29 end-to-end API tests.',
       'Seeded with a demo portfolio of 3 properties, 46 units and 14 months of history.',
     ],
     image: '/projects/hongdee-dashboard.png',
@@ -233,15 +233,15 @@ export const projects: Project[] = [
   // Placeholder. When the project is ready, replace this entry with its real description,
   // highlights, an `image` and a `sourceUrl`.
   {
-    name: 'Thai expense tracker',
-    summary: 'An expense tracker designed for use in Thailand.',
-    tags: ['Thailand'],
+    name: 'Expense tracker',
+    summary: 'A simple app for recording personal expenses and keeping to a monthly budget.',
+    tags: ['Personal finance', 'Budgeting', 'Spending analysis'],
     role: 'Personal project',
     year: '2026',
     description:
-      'An expense tracker designed for Thailand. The project is being set up, and the details and source link will be added here once it is ready.',
+      'A personal expense tracker: record each expense with an amount, category, date and note, see spending by category and over time, and set monthly budgets. The project is being set up, and the details and source link will be added here once it is ready.',
     highlights: [],
-    stat: { value: '฿', label: 'expense tracker for Thailand' },
+    stat: { value: 'Budget', label: 'spending by category and over time' },
     status: 'In progress',
     variant: 'b',
   },
@@ -250,7 +250,7 @@ export const projects: Project[] = [
   {
     name: 'Customer churn prediction',
     summary: 'Predicting which customers are likely to leave, using a public customer churn dataset from Kaggle.',
-    tags: ['Kaggle', 'Churn'],
+    tags: ['Machine learning', 'Classification', 'Customer retention', 'Kaggle'],
     role: 'Personal project',
     year: '',
     description:
@@ -265,7 +265,7 @@ export const projects: Project[] = [
 export const skills: { group: string; items: string[] }[] = [
   {
     group: 'Programming',
-    items: ['Python', 'SQL', 'R', 'Visual Basic for Application', 'JSON', 'Java', 'Bash', 'PHP', 'HTML'],
+    items: ['Python', 'SQL', 'R', 'Visual Basic for Applications', 'JSON', 'Java', 'Bash', 'PHP', 'HTML'],
   },
   { group: 'BI tools', items: ['Confluence', 'Datalore', 'Redash', 'Tableau'] },
   { group: 'Languages', items: ['Thai (Native)', 'English (Advanced)', 'Chinese (Basic)'] },

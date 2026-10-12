@@ -4,7 +4,7 @@ A static resume and portfolio built with Next.js and TypeScript, hosted on GitHu
 
 ## Edit your content
 
-Everything on the page comes from [data/resume.ts](data/resume.ts): profile, experience (key results tiles, a career chart, then roles on a timeline), projects (your own) and skills.
+Everything on the page comes from [data/resume.ts](data/resume.ts): profile, experience (key results tiles, then roles on a timeline), projects (your own) and skills.
 
 - Project photos: put images in `public/projects/` and set `image: '/projects/name.png'` on the project. On a project card, the photo replaces the big number at the top.
 - A project can show a small `status` label (such as "In progress") and a `gallery` of extra screenshots under its details.
