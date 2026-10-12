@@ -207,7 +207,7 @@ export const highlights: Project[] = [
 // A project with an `image` shows it at the top of its card; otherwise the `stat` is shown there.
 export const projects: Project[] = [
   {
-    name: 'Haven PMS',
+    name: 'HongDee',
     summary: 'Apartment and hostel management in one data model, with built-in analytics.',
     tags: ['Python', 'FastAPI', 'JavaScript'],
     role: 'Personal project',
@@ -217,15 +217,15 @@ export const projects: Project[] = [
     highlights: [
       'Analytics for occupancy, monthly recurring rent, collection rate, aged debt, ADR, RevPAR, channel mix and net operating income per property.',
       'A rule-based advisor that names the empty units, under-market rents, overdue accounts and stale repairs costing money right now.',
-      'FastAPI and SQLAlchemy backend with JWT login, four user roles and 22 end-to-end API tests.',
+      'FastAPI and SQLAlchemy backend with JWT login, four user roles and 24 end-to-end API tests.',
       'Seeded with a demo portfolio of 3 properties, 46 units and 14 months of history.',
     ],
-    image: '/projects/haven-pms-dashboard.png',
+    image: '/projects/hongdee-dashboard.png',
     status: 'In progress',
     gallery: [
-      { src: '/projects/haven-pms-dashboard.png', caption: 'Dashboard' },
-      { src: '/projects/haven-pms-frontdesk.png', caption: 'Front desk' },
-      { src: '/projects/haven-pms-analytics.png', caption: 'Analytics' },
+      { src: '/projects/hongdee-dashboard.png', caption: 'Dashboard' },
+      { src: '/projects/hongdee-frontdesk.png', caption: 'Front desk' },
+      { src: '/projects/hongdee-analytics.png', caption: 'Analytics' },
     ],
     sourceUrl: 'https://github.com/chanonwa/haven_pms',
     variant: 'a',
