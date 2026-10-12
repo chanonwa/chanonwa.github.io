@@ -1,4 +1,5 @@
 import { education, experience, highlights, profile, projects, skills } from '@/data/resume';
+import Highlights from '@/components/Highlights';
 import Projects from '@/components/Projects';
 import ThemeToggle from '@/components/ThemeToggle';
 
@@ -33,7 +34,7 @@ export default function Home() {
         </header>
 
         <section id="highlights">
-          <Projects id="highlights" title="Highlights" items={highlights} />
+          <Highlights id="highlights" title="Highlights" items={highlights} />
         </section>
 
         <section id="projects">

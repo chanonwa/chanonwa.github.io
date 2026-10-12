@@ -1,238 +1,81 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
-import type { MouseEvent as ReactMouseEvent, PointerEvent as ReactPointerEvent } from 'react';
+import { useState } from 'react';
 import type { Project } from '@/data/resume';
 
-const scrollBehavior = (): ScrollBehavior =>
-  window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
-
-// One scrolling row of cards with a details panel underneath. Used for both Highlights and Projects.
+// Image-led project cards. The screenshot and links are always visible; "Details" opens the longer text.
 export default function Projects({ id, title, items }: { id: string; title: string; items: Project[] }) {
   const [open, setOpen] = useState<number | null>(null);
-  // The panel keeps the last project's text while it slides closed.
-  const [shown, setShown] = useState(0);
-  const rail = useRef<HTMLDivElement>(null);
-  const panel = useRef<HTMLDivElement>(null);
-  const cards = useRef<(HTMLElement | null)[]>([]);
-
-  // Fade the row's left and right edges only when there are more cards out of sight on that side.
-  const [edges, setEdges] = useState({ left: false, right: true });
-
-  function updateEdges() {
-    const row = rail.current;
-    if (!row) return;
-    const left = row.scrollLeft > 4;
-    const right = row.scrollLeft + row.clientWidth < row.scrollWidth - 4;
-    setEdges((prev) => (prev.left === left && prev.right === right ? prev : { left, right }));
-  }
-
-  useEffect(() => {
-    updateEdges();
-    window.addEventListener('resize', updateEdges);
-    return () => window.removeEventListener('resize', updateEdges);
-  }, []);
-
-  // Drag the row sideways with a mouse. Touch screens already scroll it natively.
-  const [dragging, setDragging] = useState(false);
-  const drag = useRef({ active: false, moved: false, startX: 0, startScroll: 0, id: -1 });
-
-  function onPointerDown(e: ReactPointerEvent<HTMLDivElement>) {
-    const row = rail.current;
-    if (!row || e.pointerType !== 'mouse' || e.button !== 0) return;
-    drag.current = { active: true, moved: false, startX: e.clientX, startScroll: row.scrollLeft, id: e.pointerId };
-  }
-
-  function onPointerMove(e: ReactPointerEvent<HTMLDivElement>) {
-    const d = drag.current;
-    const row = rail.current;
-    if (!row || !d.active || e.pointerId !== d.id) return;
-    const dx = e.clientX - d.startX;
-    if (!d.moved) {
-      if (Math.abs(dx) < 5) return; // a small wobble is still a click
-      d.moved = true;
-      setDragging(true);
-      try {
-        row.setPointerCapture(e.pointerId); // keep following the mouse outside the row
-      } catch {}
-    }
-    row.scrollLeft = d.startScroll - dx;
-  }
-
-  function endDrag(e: ReactPointerEvent<HTMLDivElement>) {
-    const d = drag.current;
-    if (!d.active || e.pointerId !== d.id) return;
-    d.active = false;
-    if (d.moved) setDragging(false);
-  }
-
-  // A drag that ends over a card must not also open it.
-  function onClickCapture(e: ReactMouseEvent<HTMLDivElement>) {
-    if (drag.current.moved) {
-      e.preventDefault();
-      e.stopPropagation();
-      drag.current.moved = false;
-    }
-  }
-
-  function nudge(dir: 1 | -1) {
-    // One card (260px) plus the 16px gap.
-    rail.current?.scrollBy({ left: dir * 276, behavior: scrollBehavior() });
-  }
-
-  function toggle(i: number) {
-    if (open === i) {
-      setOpen(null);
-      return;
-    }
-    setOpen(i);
-    setShown(i);
-
-    // Slide the row sideways if the chosen card is cut off at either edge.
-    const row = rail.current;
-    const card = cards.current[i];
-    if (!row || !card) return;
-    const r = row.getBoundingClientRect();
-    const c = card.getBoundingClientRect();
-    const dx = c.left < r.left ? c.left - r.left : c.right > r.right ? c.right - r.right : 0;
-    if (dx !== 0) row.scrollBy({ left: dx, behavior: scrollBehavior() });
-  }
-
-  // After the panel has opened, move the page only as far as needed to show all of it.
-  // The clicked card stays where it is unless the panel would otherwise run off the bottom,
-  // and the page never moves far enough to push that card up under the nav.
-  // Waiting 0.3s for the open transition means the panel has its final height by then.
-  useEffect(() => {
-    if (open === null) return;
-    const timer = window.setTimeout(
-      () => {
-        const card = cards.current[open];
-        const box = panel.current;
-        if (!card || !box) return;
-        const nav = document.querySelector('nav');
-        const navH = nav ? nav.getBoundingClientRect().height : 69;
-        const topLimit = navH + 12;
-        const bottomLimit = window.innerHeight - 12;
-        const needDown = box.getBoundingClientRect().bottom - bottomLimit;
-        if (needDown <= 0) return; // the whole panel is already in view
-        const room = card.getBoundingClientRect().top - topLimit; // how far the card can rise
-        const delta = Math.min(needDown, Math.max(room, 0));
-        if (delta > 0) window.scrollBy({ top: delta, behavior: scrollBehavior() });
-      },
-      scrollBehavior() === 'auto' ? 0 : 320,
-    );
-    return () => window.clearTimeout(timer);
-  }, [open]);
 
   return (
     <div>
-      <div className="sec-head">
-        <h2>{title}</h2>
-        {/* Three cards fit across the page, so the buttons only matter beyond that. */}
-        {items.length > 3 && (
-          <div className="rail-btns">
-            <button className="rail-btn" type="button" aria-label={`Scroll ${title.toLowerCase()} left`} onClick={() => nudge(-1)}>
-              ←
-            </button>
-            <button className="rail-btn" type="button" aria-label={`Scroll ${title.toLowerCase()} right`} onClick={() => nudge(1)}>
-              →
-            </button>
-          </div>
-        )}
-      </div>
+      <h2>{title}</h2>
 
-      <div
-        className={`rail${dragging ? ' dragging' : ''}${edges.left ? ' fade-l' : ''}${edges.right ? ' fade-r' : ''}`}
-        ref={rail}
-        onScroll={updateEdges}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-        onLostPointerCapture={endDrag}
-        onClickCapture={onClickCapture}
-      >
+      <div className="pgrid">
         {items.map((p, i) => {
           const isOpen = open === i;
+          const panelId = `${id}-${i}-more`;
           return (
-            <article
-              key={p.name}
-              ref={(el) => {
-                cards.current[i] = el;
-              }}
-              className={`proj${isOpen ? ' open' : ''}`}
-            >
-              <button
-                className="proj-head"
-                type="button"
-                aria-expanded={isOpen}
-                aria-controls={`${id}-detail`}
-                onClick={() => toggle(i)}
-              >
-                <div
-                  className={`thumb ${p.image ? 'img' : p.variant === 'a' ? '' : (p.variant ?? '')}`}
-                  style={p.image ? { backgroundImage: `url(${p.image})` } : undefined}
-                />
-                <div className="body">
-                  <h3>{p.name}</h3>
-                  <p>{p.summary}</p>
-                  <div className="tags">
-                    {p.tags.map((t) => (
-                      <span className="tag" key={t}>{t}</span>
-                    ))}
+            <article key={p.name} className="pcard">
+              {p.image ? (
+                <div className="pshot">
+                  <img src={p.image} alt={`${p.name} screenshot`} />
+                </div>
+              ) : (
+                p.stat && (
+                  <div className="pshot stat">
+                    <strong>{p.stat.value}</strong>
+                    <span>{p.stat.label}</span>
+                  </div>
+                )
+              )}
+
+              <div className="pbody">
+                <h3>{p.name}</h3>
+                <div className="meta"><span>{p.role}</span><span>{p.year}</span></div>
+                <p>{p.summary}</p>
+                <div className="tags">
+                  {p.tags.map((t) => (
+                    <span className="tag" key={t}>{t}</span>
+                  ))}
+                </div>
+
+                <div className="pactions">
+                  {p.liveUrl && (
+                    <a className="btn pri" href={p.liveUrl} target="_blank" rel="noopener">Live site</a>
+                  )}
+                  {p.sourceUrl && (
+                    <a className="btn" href={p.sourceUrl} target="_blank" rel="noopener">Source</a>
+                  )}
+                  <button
+                    className="ptoggle"
+                    type="button"
+                    aria-expanded={isOpen}
+                    aria-controls={panelId}
+                    onClick={() => setOpen(isOpen ? null : i)}
+                  >
+                    {isOpen ? 'Hide details' : 'Details'}
+                  </button>
+                </div>
+
+                <div className={`more${isOpen ? ' open' : ''}`} id={panelId}>
+                  <div>
+                    <div className="pdetail">
+                      <p>{p.description}</p>
+                      {p.highlights.length > 0 && (
+                        <ul>
+                          {p.highlights.map((h) => (
+                            <li key={h}>{h}</li>
+                          ))}
+                        </ul>
+                      )}
+                    </div>
                   </div>
                 </div>
-                <span className="cue" aria-hidden="true">{isOpen ? '−' : '+'}</span>
-              </button>
+              </div>
             </article>
           );
         })}
-      </div>
-
-      <div className={`more${open !== null ? ' open' : ''}`} id={`${id}-detail`} ref={panel}>
-        <div>
-          {/* Every project's panel sits in the same grid cell, so they all take the height of the tallest. */}
-          <div className="panels">
-            {items.map((p, i) => (
-              <div
-                key={p.name}
-                className={`detail${p.image || p.stat ? '' : ' solo'}${shown === i ? ' on' : ''}`}
-                aria-hidden={shown !== i}
-              >
-                {p.image ? (
-                  <div className="shot">
-                    <img src={p.image} alt={`${p.name} screenshot`} />
-                  </div>
-                ) : (
-                  p.stat && (
-                    <div className="shot stat">
-                      <strong>{p.stat.value}</strong>
-                      <span>{p.stat.label}</span>
-                    </div>
-                  )
-                )}
-                <div>
-                  <h3>{p.name}</h3>
-                  <div className="meta"><span>{p.role}</span><span>{p.year}</span></div>
-                  <p>{p.description}</p>
-                  {p.highlights.length > 0 && (
-                    <ul>
-                      {p.highlights.map((h) => (
-                        <li key={h}>{h}</li>
-                      ))}
-                    </ul>
-                  )}
-                  {(p.liveUrl || p.sourceUrl) && (
-                    <div className="links">
-                      {p.liveUrl && <a className="btn pri" href={p.liveUrl}>Live site</a>}
-                      {p.sourceUrl && <a className="btn" href={p.sourceUrl}>Source</a>}
-                    </div>
-                  )}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
       </div>
     </div>
   );

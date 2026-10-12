@@ -83,7 +83,7 @@ export const experience: Job[] = [
   },
 ];
 
-// The Highlights cards are drawn from the experience above. Add an `image` (in public/projects/) to any card to show a photo instead of the big number.
+// The Highlights tiles are drawn from the experience above. Each shows its `stat` (the big number) on the tile.
 export const highlights: Project[] = [
   {
     name: 'Messaging pricing model',
@@ -145,7 +145,7 @@ export const highlights: Project[] = [
       'Identified illegal or suspicious accounts.',
       'Used messaging patterns, account age and naming conventions as key indicators.',
     ],
-    stat: { value: '3', label: 'key indicators: messaging patterns, account age, naming conventions' },
+    stat: { value: '3', label: 'key indicators for flagging accounts' },
     variant: 'a',
   },
   {
@@ -177,12 +177,13 @@ export const highlights: Project[] = [
       'Conducted data visualization and analysis.',
       'Performed system maintenance and provided daily customer support.',
     ],
-    stat: { value: 'Nationwide', label: 'signal-quality survey across all service providers' },
+    stat: { value: 'Nationwide', label: 'signal-quality survey, all providers' },
     variant: 'c',
   },
 ];
 
 // Personal projects. Each can have an `image` (in public/projects/), a `liveUrl` and a `sourceUrl`.
+// A project with an `image` shows it at the top of its card; otherwise the `stat` is shown there.
 export const projects: Project[] = [
   {
     name: 'Haven PMS',
