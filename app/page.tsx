@@ -24,8 +24,11 @@ export default function Home() {
 
       <div className="wrap" id="top">
         <header className="hero">
-          <span className="badge"><span className="dot" />{profile.status}</span>
-          <h1>{profile.name}.<br /><span>{profile.headline}</span></h1>
+          <div className="badges">
+            <span className="badge"><span className="dot" />{profile.status}</span>
+            <span className="badge">{profile.degree}</span>
+          </div>
+          <h1><code className="hi">{profile.greeting}</code><br />{profile.name}.<br /><span>{profile.headline}</span></h1>
           <p className="lede">{profile.intro}</p>
           <div className="cta">
             <a className="btn pri" href="#experience">See experience</a>

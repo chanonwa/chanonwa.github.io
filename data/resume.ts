@@ -38,10 +38,14 @@ export type Project = {
 export const profile = {
   name: 'Chanon Wasusopon',
   handle: 'chanon-wasusopon',
-  headline: 'Business intelligence, from SQL to strategy.',
+  /** First line of the big heading, a nod to the Computer Science degree. */
+  greeting: 'Hello World!',
+  headline: 'Business intelligence, from data to strategy.',
   intro:
     "Business Intelligence Consultant Manager with 8+ years of experience. Spent 4 years working with data at LINE Thailand, the country's No. 1 messaging application, covering pricing, persona segmentation, revenue forecasting, ETL and automated reporting dashboards built with SQL, Python and Tableau. Before that, 4 years as a business analyst at Detecon, a German IT consultancy specializing in telecommunications.",
   status: 'MSc Business Analytics, Bayes Business School',
+  /** Shown as a second badge beside `status`. */
+  degree: 'BSc Computer Science, University of Essex',
   email: 'cwasusopon@gmail.com',
   github: 'https://github.com/chanonwa',
   linkedin: 'https://www.linkedin.com/in/chanon-wasusopon/',

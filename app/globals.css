@@ -65,8 +65,11 @@ nav ul a:hover { color: var(--fg); }
 .hero { padding-block: 88px 56px; }
 .badge { display: inline-flex; align-items: center; gap: 8px; font: 400 12px var(--mono); color: var(--mut); border: 1px solid var(--line); border-radius: 999px; padding: 4px 12px; background: var(--bg2); }
 .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--ok); }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
 h1 { font-size: clamp(38px, 8vw, 68px); line-height: 1.04; letter-spacing: -0.045em; font-weight: 700; margin: 24px 0 20px; text-wrap: balance; }
 h1 span { background: linear-gradient(90deg, var(--fg), var(--mut)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+/* "Hello World!" above the name, set in the code font as a nod to the Computer Science degree. */
+h1 .hi { font: 600 0.62em var(--mono); letter-spacing: -0.04em; color: var(--accent); }
 .lede { color: var(--mut); font-size: 18px; max-width: 560px; margin: 0 0 28px; }
 .cta { display: flex; flex-wrap: wrap; gap: 12px; }
 
