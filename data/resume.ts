@@ -233,19 +233,29 @@ export const projects: Project[] = [
     sourceUrl: 'https://github.com/chanonwa/rentdee',
     variant: 'a',
   },
-  // Placeholder. When the project is ready, replace this entry with its real description,
-  // highlights, an `image` and a `sourceUrl`.
   {
-    name: 'Expense tracker',
-    summary: 'A simple app for recording personal expenses and keeping to a monthly budget.',
-    tags: ['Personal finance', 'Budgeting', 'Spending analysis'],
+    name: 'NgernKob',
+    summary: 'A Thai-first income and expense tracker in a single HTML file that works offline and keeps all data in the browser.',
+    tags: ['JavaScript', 'Offline-first', 'Personal finance', 'Thai tax'],
     role: 'Personal project',
     year: '2026',
     description:
-      'A personal expense tracker: record each expense with an amount, category, date and note, see spending by category and over time, and set monthly budgets. The project is being set up, and the details and source link will be added here once it is ready.',
-    highlights: [],
-    stat: { value: 'Budget', label: 'spending by category and over time' },
+      'A money tracker built around how people in Thailand spend and pay: everyday Thai categories, the Buddhist-era calendar, Thai banks and e-wallets, PromptPay slips and the personal income tax rules. It is one HTML file with no server and no sign-up, and everything stays in the browser.',
+    highlights: [
+      'Reads bank transfer slips and PromptPay QR codes from a photo or the camera, decodes the QR payload, verifies its checksum and suggests a category.',
+      'A personal income tax calculator with the progressive 0 to 35% bands, 23 allowances and their combined caps, which also shows how much more you could put into tax-saving funds and roughly how much tax that would save.',
+      'Spending tagged as tax-deductible, or as part of a government scheme such as Khon La Khrueng, flows into the tax and benefits pages automatically.',
+      'Budgets with the 50/30/20 rule, savings goals, bills and instalments, and a yearly report with a CSV export that opens cleanly in Excel.',
+      'Thai and English, light and dark themes, and JSON backup and restore.',
+    ],
+    image: '/projects/ngernkob-dashboard.png',
     status: 'In progress',
+    gallery: [
+      { src: '/projects/ngernkob-dashboard.png', caption: 'Dashboard' },
+      { src: '/projects/ngernkob-tax.png', caption: 'Tax calculator' },
+      { src: '/projects/ngernkob-report.png', caption: 'Annual report' },
+    ],
+    sourceUrl: 'https://github.com/chanonwa/ngernkob',
     variant: 'b',
   },
   // Placeholder with only the basics. Add the approach, results, tools, year, an `image` and a `sourceUrl`
