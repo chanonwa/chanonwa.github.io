@@ -9,9 +9,9 @@ export const metadata: Metadata = {
   description: profile.intro,
 };
 
-// Light is the default. Only a saved "dark" choice changes it, applied before first paint so the page does not flash.
-// The key is "theme-choice" (not "theme") so choices saved before light became the default do not carry over.
-const themeScript = `try{if(localStorage.getItem('theme-choice')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}`;
+// The theme follows the visitor's system setting unless they have picked one with the toggle (saved as "theme-choice").
+// It is applied before first paint so the page does not flash.
+const themeScript = `(function(){var c=null;try{c=localStorage.getItem('theme-choice')}catch(e){}if(c==='dark'||(c!=='light'&&window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches))document.documentElement.setAttribute('data-theme','dark')})()`;
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (

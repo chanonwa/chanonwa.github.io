@@ -1,4 +1,4 @@
-/* Light is the default for every visitor. Dark applies only when they pick it (data-theme="dark"). */
+/* Light tokens. Dark applies with data-theme="dark", which the layout script sets from the visitor's system setting or their saved choice. */
 :root {
   --bg: #fff;
   --bg2: #fafafa;
