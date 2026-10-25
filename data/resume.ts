@@ -262,6 +262,28 @@ export const projects: Project[] = [
     sourceUrl: 'https://github.com/chanonwa/ngernkob',
     variant: 'b',
   },
+  {
+    name: 'TaskBarHero bot',
+    summary: 'A bot that reads the screen of the Steam game TaskBarHero and plays its farming loop, extended from an open-source original.',
+    tags: ['Python', 'OpenCV', 'Computer vision', 'Automation'],
+    role: 'Personal project',
+    year: '2026',
+    description:
+      "An extended version of Marcus-Xu-04's open-source MAA TaskBar Hero. It reads the screen with OpenCV template matching and plays with normal mouse and keyboard input, never touching game memory or files.",
+    highlights: [
+      'Opens chest drops, stashes the loot and fights act bosses with soulstones.',
+      'Synthesizes items in the Cube when the backpack is full, locking the best items first.',
+      'An emergency-stop hotkey, a debug ZIP for bug reports, and a Windows app cut from 78 MB to 54 MB.',
+    ],
+    image: '/projects/taskbarhero-game.png',
+    status: 'v1.5 released',
+    gallery: [
+      { src: '/projects/taskbarhero-game.png', caption: 'What the bot reads' },
+      { src: '/projects/taskbarhero-settings.png', caption: 'Bot settings' },
+    ],
+    sourceUrl: 'https://github.com/chanonwa/MAA-Task-Bar-Hero',
+    variant: 'c',
+  },
   // Placeholder with only the basics. Add the approach, results, tools, year, an `image` and a `sourceUrl`
   // (for example the Kaggle notebook or a GitHub repo) when you have them.
   {
