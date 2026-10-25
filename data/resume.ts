@@ -262,6 +262,21 @@ export const projects: Project[] = [
     sourceUrl: 'https://github.com/chanonwa/ngernkob',
     variant: 'b',
   },
+  // Placeholder with only the basics. Add the approach, results, tools, year, an `image` and a `sourceUrl`
+  // (for example the Kaggle notebook or a GitHub repo) when you have them.
+  {
+    name: 'Customer churn prediction',
+    summary: 'Predicting which customers are likely to leave, using a public customer churn dataset from Kaggle.',
+    tags: ['Machine learning', 'Classification', 'Customer retention', 'Kaggle'],
+    role: 'Personal project',
+    year: '',
+    description:
+      'A customer churn prediction project built on a public dataset from Kaggle. The approach and results will be added here.',
+    highlights: [],
+    stat: { value: 'Kaggle', label: 'customer churn prediction' },
+    status: 'In progress',
+    variant: 'c',
+  },
   {
     name: 'TaskBarHero bot',
     summary: 'A bot that reads the screen of the Steam game TaskBarHero and plays its farming loop, extended from an open-source original.',
@@ -282,21 +297,6 @@ export const projects: Project[] = [
       { src: '/projects/taskbarhero-settings.png', caption: 'Bot settings' },
     ],
     sourceUrl: 'https://github.com/chanonwa/MAA-Task-Bar-Hero',
-    variant: 'c',
-  },
-  // Placeholder with only the basics. Add the approach, results, tools, year, an `image` and a `sourceUrl`
-  // (for example the Kaggle notebook or a GitHub repo) when you have them.
-  {
-    name: 'Customer churn prediction',
-    summary: 'Predicting which customers are likely to leave, using a public customer churn dataset from Kaggle.',
-    tags: ['Machine learning', 'Classification', 'Customer retention', 'Kaggle'],
-    role: 'Personal project',
-    year: '',
-    description:
-      'A customer churn prediction project built on a public dataset from Kaggle. The approach and results will be added here.',
-    highlights: [],
-    stat: { value: 'Kaggle', label: 'customer churn prediction' },
-    status: 'In progress',
     variant: 'c',
   },
 ];
